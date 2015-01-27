@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Axel.Models
+namespace AxelSys.Models
 {
-    public class User
+
+    public enum UserType 
     {
-        public int id { get; set; }
+        Admin,Driver,Customer
+    }
+
+    public class UserModel
+    {
+        public int  SEQ_ID { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public string UserType { get; set; }
-        
+        public UserType? UserType { get; set; }
     }
 }

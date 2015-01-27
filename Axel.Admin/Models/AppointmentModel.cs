@@ -3,60 +3,59 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Axel.Models
+namespace AxelSys.Models
 {
-    public class Appointment
+    public enum Status
     {
-        public int RecordID { get; set; }
-        
+        Cancelled, Completed, Dispatched, ReadyForDispatch
+    }
+    public enum CustomerType 
+    {
+        DefaultCustomer,RegisteredCompany,RegisteredIndividual
+    }
+    public enum PaymentTerms
+    {
+        AdvancePayment,PaymentOnDropOff,PaymentOnMonthEnd
+    }
+
+    public class AppointmentModel
+    {
+        public int SEQ_ID { get; set; }
+        public int Customer_SEQ_ID { get; set; }
+        public int Driver_SEQ_ID { get; set; }
+        public int Vehicle_SEQ_ID { get; set; }
         public int Code { get; set; }
         public string Name { get; set; }
         public string Phone { get; set; }
-        public string CustomerType { get; set; }
-        
+        public CustomerType? CustomerType { get; set; }
         public DateTime Date { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
-        public bool blnLuggage { get; set; }
-        public int nPassengers { get; set; }
-        public int nChildren { get; set; }
-        public int nBoosters { get; set; }
-        public int nInfants { get; set; }
-        public bool blnWaitAndReturn { get; set; }
-
-        public int PickupTypeID { get; set; }
-        public string PickupLocation { get; set; }
-        public string PickupPostCode { get; set; }
-        public string PickupStreetNo { get; set; }
-        public string PickupHouseNo { get; set; }
-
-        public int DropoffTypeID { get; set; }
-        public string DropoffLocation { get; set; }
-        public string DropoffPostCode { get; set; }
-        public string DropoffStreetNo { get; set; }
-        public string DropoffHouseNo { get; set; }
-
-        public bool blnRegularAppointment { get; set; }
+        public DateTime Time { get; set; }
+        public string Vehicle { get; set; }
+        public bool Luggage { get; set; }
+        public int NoOfPassengers { get; set; }
+        public int NoOfChildren { get; set; }
+        public int NoOfBoosters { get; set; }
+        public int NoOfInfants { get; set; }
+        public bool WaitAndReturn { get; set; }
+        public DateTime ReturnTime { get; set; }
+        public string Type { get; set; }
+        public string Location { get; set; }
+        public string PostCode { get; set; }
+        public string StreetNo { get; set; }
+        public string HouseNo { get; set; }
+        public bool RegularAppointment { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public bool Monday { get; set; }
-        public bool Tuesday { get; set; }
-        public bool Wednesday { get; set; }
-        public bool Thursday { get; set; }
-        public bool Friday { get; set; }
-        public bool Saturday { get; set; }
-        public bool Sunday { get; set; }
-        
+        public string Days { get; set; }
         public string Fare { get; set; }
         public string Distance { get; set; }
         public string OtherCharges { get; set; }
         public string TotalAmount { get; set; }
+        public PaymentTerms? PaymentTerms { get; set; }
         public string AdditionalComments { get; set; }
         public string DrivingDirections { get; set; }
-
-        public int PaymentTermsID { get; set; }
-        public int DriverID { get; set; }
-        public int VehicleID { get; set; }
-
+        public string Driver { get; set; }
+        public Status? Status { get; set; }
+        
     }
 }
