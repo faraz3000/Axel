@@ -8,7 +8,7 @@ namespace AxelSys.Models
     public class FareModel
     {
         public int SEQ_ID { get; set; }
-        public string TotalAmount { get; set; }
+        public string TOTAL_AMOUNT { get; set; }
 
 
     }

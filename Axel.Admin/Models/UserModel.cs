@@ -14,8 +14,8 @@ namespace AxelSys.Models
     public class UserModel
     {
         public int  SEQ_ID { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public UserType? UserType { get; set; }
+        public string USER_NAME { get; set; }
+        public string PASSWORD { get; set; }
+        public UserType? USER_TYPE { get; set; }
     }
 }

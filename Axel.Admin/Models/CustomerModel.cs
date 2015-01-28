@@ -17,18 +17,18 @@ namespace AxelSys.Models
     {
 
         public int SEQ_ID { get; set; }
-        public int Code { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public CustomerType? CustomerType { get; set; }
-        public string Email { get; set; }
-        public string HomePhone { get; set; }
-        public string MobileNo { get; set; }
-        public PaymentMode? PaymentMode { get; set; }
-        public string PostCode { get; set; }
-        public string StreetName { get; set; }
-        public string HouseNo { get; set; }
-        public string County { get; set; }
-        public string City { get; set; }
+        public int CODE { get; set; }
+        public string FIRST_NAME { get; set; }
+        public string LAST_NAME { get; set; }
+        public CustomerType? CUSTOMER_TYPE { get; set; }
+        public string EMAIL { get; set; }
+        public string HOME_PHONE { get; set; }
+        public string MOBILE_NO { get; set; }
+        public PaymentMode? PAYMENT_MODE { get; set; }
+        public string POST_CODE { get; set; }
+        public string STREET_NAME { get; set; }
+        public string HOUSE_NO { get; set; }
+        public string COUNTY { get; set; }
+        public string CITY { get; set; }
     }
 }

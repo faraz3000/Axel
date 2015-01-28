@@ -21,41 +21,41 @@ namespace AxelSys.Models
     public class AppointmentModel
     {
         public int SEQ_ID { get; set; }
-        public int Customer_SEQ_ID { get; set; }
-        public int Driver_SEQ_ID { get; set; }
-        public int Vehicle_SEQ_ID { get; set; }
-        public int Code { get; set; }
-        public string Name { get; set; }
-        public string Phone { get; set; }
-        public CustomerType? CustomerType { get; set; }
-        public DateTime Date { get; set; }
-        public DateTime Time { get; set; }
-        public string Vehicle { get; set; }
-        public bool Luggage { get; set; }
-        public int NoOfPassengers { get; set; }
-        public int NoOfChildren { get; set; }
-        public int NoOfBoosters { get; set; }
-        public int NoOfInfants { get; set; }
-        public bool WaitAndReturn { get; set; }
-        public DateTime ReturnTime { get; set; }
-        public string Type { get; set; }
-        public string Location { get; set; }
-        public string PostCode { get; set; }
-        public string StreetNo { get; set; }
-        public string HouseNo { get; set; }
-        public bool RegularAppointment { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public string Days { get; set; }
-        public string Fare { get; set; }
-        public string Distance { get; set; }
-        public string OtherCharges { get; set; }
-        public string TotalAmount { get; set; }
-        public PaymentTerms? PaymentTerms { get; set; }
-        public string AdditionalComments { get; set; }
-        public string DrivingDirections { get; set; }
-        public string Driver { get; set; }
-        public Status? Status { get; set; }
+        public int CUSTOMER_SEQ_ID { get; set; }
+        public int DRIVER_SEQ_ID { get; set; }
+        public int VEHICLE_SEQ_ID { get; set; }
+        public int CODE { get; set; }
+        public string NAME { get; set; }
+        public string PHONE { get; set; }
+        public CustomerType? CUSTOMER_TYPE { get; set; }
+        public DateTime DATE { get; set; }
+        public DateTime TIME { get; set; }
+        public string VEHICLE { get; set; }
+        public bool LUGGAGE { get; set; }
+        public int NO_OF_PASSENGERS { get; set; }
+        public int NO_OF_CHILDREN { get; set; }
+        public int NO_OF_BOOSTERS { get; set; }
+        public int NO_OF_INFANTS { get; set; }
+        public bool WAIT_AND_RETURN { get; set; }
+        public DateTime RETURN_TIME { get; set; }
+        public string TYPE { get; set; }
+        public string LOCATION { get; set; }
+        public string POST_CODE { get; set; }
+        public string STREET_NO { get; set; }
+        public string HOUSE_NO { get; set; }
+        public bool REGULAR_APPOINTMENT { get; set; }
+        public DateTime START_DATE { get; set; }
+        public DateTime END_DATE { get; set; }
+        public string DAYS { get; set; }
+        public string FARE { get; set; }
+        public string DISTANCE { get; set; }
+        public string OTHER_CHARGES { get; set; }
+        public string TOTAL_AMOUNT { get; set; }
+        public PaymentTerms? PAYMENT_TERMS { get; set; }
+        public string ADDITIONAL_COMMENTS { get; set; }
+        public string DRIVING_DIRECTIONS { get; set; }
+        public string DRIVER { get; set; }
+        public Status? STATUS { get; set; }
         
     }
 }

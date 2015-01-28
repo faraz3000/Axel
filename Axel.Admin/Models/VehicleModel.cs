@@ -13,11 +13,11 @@ namespace AxelSys.Models
     public class VehicleModel
     {
         public int SEQ_ID { get; set; }
-        public int Code { get; set; }
-        public string Description { get; set; }
-        public string Manufacturer { get; set; }
-        public Class? Class { get; set; }
-        public bool Picture { get; set; }
-        public bool Active { get; set; }
+        public int CODE { get; set; }
+        public string DESCRIPTION { get; set; }
+        public string MANUFACTURER { get; set; }
+        public Class? CLASS { get; set; }
+        public bool PICTURE { get; set; }
+        public bool ACTIVE { get; set; }
     }
 }
