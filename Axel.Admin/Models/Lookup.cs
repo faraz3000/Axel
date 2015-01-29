@@ -7,8 +7,9 @@ using System.Web.Mvc;
 
 namespace Axel.Admin.Models
 {
-    public class Lookup
+    static class Lookup
     {
+        
         public static SelectList ToSelectList(this DataTable table, string valueField, string textField)
         {
             List<SelectListItem> list = new List<SelectListItem>();
