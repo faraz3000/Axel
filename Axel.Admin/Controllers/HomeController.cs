@@ -16,7 +16,15 @@ namespace Axel.Admin.Controllers
     {
         public ActionResult Index()
         {
+            Session["USERID"] = null;
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Index(UserModel Model)
+        {
+            Session["USERID"] = 1;
+            return RedirectToAction("Dashboard", "Admin");
         }
 
         public ActionResult About()

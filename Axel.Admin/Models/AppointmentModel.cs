@@ -2,13 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-<<<<<<< HEAD
 using Axel.Admin.Models;
-=======
-using AxelSys.Models;
->>>>>>> origin/master
 
-namespace Axel.Admin
+namespace Axel.Admin.Models
 {
 
     public class AppointmentModel
@@ -48,12 +44,8 @@ namespace Axel.Admin
         public PaymentTermModel? PAYMENT_TERMS { get; set; }
         public string ADDITIONAL_COMMENTS { get; set; }
         public string DRIVING_DIRECTIONS { get; set; }
-        public string DRIVER { get; set; }
-<<<<<<< HEAD
         public StatusModel? STATUS { get; set; }
         
-=======
-        public Status? STATUS { get; set; }
         public string INVOICE_STATUS { get; set; }
         public string PAID_AMOUNT { get; set; }
 
@@ -61,6 +53,5 @@ namespace Axel.Admin
         public virtual DriverModel DRIVER { get; set; }
         public virtual VehicleModel Vehicle { get; set; }
       
->>>>>>> origin/master
     }
 }

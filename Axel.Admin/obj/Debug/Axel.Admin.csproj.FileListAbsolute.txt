@@ -33,3 +33,4 @@ D:\PROJECTS\Axel\Axel.Admin\bin\Microsoft.Web.WebPages.OAuth.xml
 D:\PROJECTS\Axel\Axel.Admin\bin\WebMatrix.WebData.xml
 D:\PROJECTS\Axel\Axel.Admin\obj\Debug\Axel.Admin.dll
 D:\PROJECTS\Axel\Axel.Admin\obj\Debug\Axel.Admin.pdb
+D:\PROJECTS\Axel\Axel.Admin\obj\Debug\Axel.Admin.csprojResolveAssemblyReference.cache

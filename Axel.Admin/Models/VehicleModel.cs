@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Axel.Admin
+namespace Axel.Admin.Models
 {
     public enum Class
     {

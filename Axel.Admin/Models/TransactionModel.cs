@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace AxelSys.Models
+namespace Axel.Admin.Models
 {
    
     public class TransactionModel

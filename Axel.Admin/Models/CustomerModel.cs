@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Axel.Admin.Models;
 
-namespace Axel.Admin
+namespace Axel.Admin.Models
 {
 
     public class CustomerModel

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Axel.Admin;
 
-namespace AxelSys.Models
+namespace Axel.Admin.Models
 {
     public class ReceiptModel
     {
@@ -18,6 +19,6 @@ namespace AxelSys.Models
         public string CUSTOMER_BANK { get; set; }
         public bool STATUS { get; set; }
 
-        public virtual ICollection<CustomerModel> CUSTOMER { get; set; }
+        public List<CustomerModel>CUSTOMER { get; set; }
     }
 }

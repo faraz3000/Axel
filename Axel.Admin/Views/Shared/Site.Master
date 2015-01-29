@@ -70,20 +70,30 @@
             <div class="wrapper">
                 <div id="logo">
                     <a href="http://www.nialexisplatform.org">
-                        <img src="../Images/logo.png"  width="123" height="60" alt="Axel Connect" /></a>
+                        <img src="../Images/logo.png" width="123" height="60" alt="Axel Connect" /></a>
                 </div>
-                <%if (!string.IsNullOrEmpty(Convert.ToString(Session["ContactRecordId"])))
+                <%if (!string.IsNullOrEmpty(Convert.ToString(Session["USERID"])))
                   {%>
-                <%if (!string.IsNullOrEmpty(Convert.ToString(Session["CompanyName"])))
-                  {%>
-                <div id="logout" style="float: right; display: inline-block;"><a style="font-weight: bold; font-size: 14px; color: #c2720d;"><%=Session["LabelName"]%></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a style="font-weight: bold; font-size: 14px; color: #c2720d;"><%=Session["CompanyName"]%></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a id="btnLogout" style="font-weight: bold; color: #c2720d; font-size: 14px;" href="<%=Url.Action("Index","Home") %>">Logout</a></div>
-                <%}
-                  else
-                  {%>
-                <div id="logout" style="float: right; display: inline-block;"><a style="font-weight: bold; font-size: 14px; color: #c2720d;"><%=Session["LabelName"]%></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a id="btnLogout" style="font-weight: bold; color: #c2720d; font-size: 14px;" href="<%=Url.Action("Index","Home") %>">Logout</a></div>
-                <%}
-                  }%>
+                <div id="logout" style="float: right; display: inline-block;"><a style="font-weight: bold; font-size: 14px; color: #c2720d;"><%=Session["LabelName"]%></a></div>
+                <%}%>
             </div>
+                    <%if (!string.IsNullOrEmpty(Convert.ToString(Session["USERID"])))
+          {%>
+            <div id="nav" style="display: block;">
+                <input type="checkbox" id="toggle">
+                <div id="navi" class="navi">
+                    <label for="toggle" class="toggle" data-open="Main Menu" data-close="Close Menu" onclick=""></label>
+                    <ul class="menu clr">
+                        <li><a href="<%= Url.Action("Dashboard","Admin") %>">Dashboard</a></li>
+                        <li><a href="<%= Url.Action("Setup","Admin") %>">Setup</a></li>
+                        <li><a href="<%= Url.Action("Reports","Admin") %>">Reports</a></li>
+                        <li><a href="<%= Url.Action("Settings","Admin") %>">Settings</a></li>
+                        <li><a href="<%= Url.Action("Index","Home") %>">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+            <%} %>
+
         </div>
 
         <div id="text" style="float: left; display: none;">Loading, please wait...</div>
@@ -94,7 +104,14 @@
             </div>
 
         </div>
+        <%if (!string.IsNullOrEmpty(Convert.ToString(Session["USERID"])))
+          {%>
+        <div id="sidebar" style="display: none">
+               <asp:ContentPlaceHolder ID="LeftSideMenu" runat="server" />
+        </div>
+        <% } %>
         <div class="wrapper" style="z-index: 11;">
+
             <div class="content_wrapper">
                 <% if (!String.IsNullOrEmpty(ViewBag.Message))
                    { %>
@@ -105,7 +122,7 @@
 
                 <div id="body">
 
-                   <img id="btnHelp" style="height: 23px; float: right; margin-bottom: 15px; display: none;"
+                    <img id="btnHelp" style="height: 23px; float: right; margin-bottom: 15px; display: none;"
                         src="../../Images/Help.png" />
 
                     <div id="Instructions" class="callout left" style="display: none;">
@@ -124,18 +141,15 @@
                     <p>&copy; Copyright 2015 Excellence Chauffer</p>
                 </div>
             </div>
-            <%--<div id="footer" class="clr" style="background:#c94e03; border-bottom-color:#c94e03;margin-top:120px;">
-			<div id="foot_left">
-				<p><img src="../../Images/footer_logo.png" width="36" height="23" alt="footer logo"> © Copyright 2014 Dynamic Positioning. All right reserved &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="<%= Url.Action("PrivacyPolicy","Home") %>">Privacy Policy</a>   |   <a href="<%= Url.Action("Index","Home") %>">Terms &amp; Conditions</a></p>
-			</div>
-			<div id="foot_right">
-				<h3>The Nautical Institute</h3>
-				<p>202 Lambeth Road, London, SE1 7LQ<br>T:+44 (0)20 7928 1351 F:+44(0)20 7401 2817 E: sec@nautinst.org</p>
-			</div>
-		</div>--%>
         </footer>
         <asp:ContentPlaceHolder ID="ScriptsSection" runat="server" />
         <script type="text/javascript">
+            $(document).ready(function () {
+                if ($("#sidebar").text().length > 26) {
+                    $('#sidebar').show();
+                }
+                else { }
+            });
 
             $(document).ready(function () {
                 if ($("#Instructions").text().length > 47) {
@@ -211,18 +225,6 @@
                 $('#Datepicker1').datepicker();
                 $('#Datepicker2').datepicker();
 
-                //$(function () {
-                //    $('#popupDatepicker').datepicker();
-                //    $('#Datepicker').datepicker();
-                //    $('#Datepicker1').datepicker();
-                //    $('#Datepicker2').datepicker();
-                //    $('#inlineDatepicker').datepick({
-                //        showOn: "button",
-                //        dateFormat: "dd/MM/yyyy",
-                //        buttonImage: "../Content/themes/base/images/calendar-blue.gif",
-                //        buttonImageOnly: true
-                //    });
-                //});
                 $(function () {
                     $("#btnHelp").mouseover(function () {
                         $("#Instructions").show();
@@ -245,50 +247,8 @@
                     });
                 });
 
-                //$(function () {
-                //    $('input[type=submit]').click(function () {
-                //        $(this).prop("disabled", true);
-                //        $(this).closest('form').trigger('submit');
-                //    });
-                //});
             });
         </script>
-
-        <script type="text/javascript">
-            (function () {
-                var _fbq = window._fbq || (window._fbq = []);
-                if (!_fbq.loaded) {
-                    var fbds = document.createElement('script');
-                    fbds.async = true;
-                    fbds.src = '//connect.facebook.net/en_US/fbds.js';
-                    var s = document.getElementsByTagName('script')[0];
-                    s.parentNode.insertBefore(fbds, s);
-                    _fbq.loaded = true;
-                }
-                _fbq.push(['addPixelId', '714690271886438']);
-            })();
-            window._fbq = window._fbq || [];
-            window._fbq.push(['track', 'PixelInitialized', {}]);
-        </script>
-        <noscript>
-            <img height="1" width="1" alt="" style="display: none" src="https://www.facebook.com/tr?id=714690271886438&amp;ev=PixelInitialized" />
-        </noscript>
-
-
-        <script type="text/javascript">
-            /* <![CDATA[ */
-            var google_conversion_id = 983599908;
-            var google_custom_params = window.google_tag_params;
-            var google_remarketing_only = true;
-            /* ]]> */
-        </script>
-        <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
-        </script>
-        <noscript>
-            <div style="display: inline;">
-                <img height="1" width="1" style="border-style: none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/983599908/?value=0&amp;guid=ON&amp;script=0" />
-            </div>
-        </noscript>
     </div>
 </body>
 </html>
