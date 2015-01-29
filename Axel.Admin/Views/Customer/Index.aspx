@@ -33,28 +33,28 @@
                 </div>
 
             </div>
-            <% foreach (var IndCor in Model)
-               { %>
+<%--            <% foreach (var IndCor in Model)
+               { %>--%>
             <div class="row clr">
                 <div class="column">
-                    <a title="Edit" href="<%= Url.Action("Black_OSO_WebPage", "InductionCourse", new { strInductionCourseId = IndCor.RecordId })%>">
-                        <img alt="Edit" style="margin: 0px 10px -4px 10px;" src="../../Images/edit_inline.gif" /></a>
-                     | <a title="Delete" href="<%= Url.Action("Black_OSO_DeleteCourse", "InductionCourse", new { strInductionCourseId = IndCor.RecordId })%>"><img alt="Delete" style="margin: 0px 10px -4px 10px;" src="../../Images/delete_inline.gif" /></a>
+                    <%--<a title="Edit" href="<%= Url.Action("Black_OSO_WebPage", "InductionCourse", new { strInductionCourseId = IndCor.RecordId })%>">--%>
+                        <%--<img alt="Edit" style="margin: 0px 10px -4px 10px;" src="../../Images/edit_inline.gif" /></a>--%>
+                     <%--| <a title="Delete" href="<%= Url.Action("Black_OSO_DeleteCourse", "InductionCourse", new { strInductionCourseId = IndCor.RecordId })%>"><img alt="Delete" style="margin: 0px 10px -4px 10px;" src="../../Images/delete_inline.gif" /></a>--%>
                 </div>
-                <div class="column" title="<%= Html.Encode(IndCor.Attribute003)%>">
-                        <%= Html.Encode(IndCor.Attribute003 !=null?  IndCor.Attribute003.Length > 20? IndCor.Attribute003.Substring(0,20) + "...": IndCor.Attribute003 : "-")%>
+                <div class="column">
+                        <%--<%= Html.Encode(IndCor.Attribute003 !=null?  IndCor.Attribute003.Length > 20? IndCor.Attribute003.Substring(0,20) + "...": IndCor.Attribute003 : "-")%>--%>
                     </div>
                 <div class="column"> 
-                    <%= Html.Encode(string.IsNullOrEmpty(IndCor.Attribute014)?"-":IndCor.Attribute014)%>
+                    <%--<%= Html.Encode(string.IsNullOrEmpty(IndCor.Attribute014)?"-":IndCor.Attribute014)%>--%>
                 </div>
                 <div class="column">
-                    <%= Html.Encode(string.IsNullOrEmpty(IndCor.Attribute005)?"-":IndCor.Attribute005)%>
+                    <%--<%= Html.Encode(string.IsNullOrEmpty(IndCor.Attribute005)?"-":IndCor.Attribute005)%>--%>
                 </div>
                 <div class="column">
-                    <%= Html.Encode(string.IsNullOrEmpty(IndCor.Attribute021)?"-":IndCor.Attribute021)%>
+                    <%--<%= Html.Encode(string.IsNullOrEmpty(IndCor.Attribute021)?"-":IndCor.Attribute021)%>--%>
                 </div>
             </div>
-            <% } %>
+<%--            <% } %>--%>
         </div>
                 <div class="back" style="float: right;margin-right:-9px;">
             <a href="<%= Url.Action("OSO_LogBook", "LogBook") %>">Back to Logbook Overview</a>

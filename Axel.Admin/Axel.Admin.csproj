@@ -184,6 +184,7 @@
     <Compile Include="Models\DriverModel .cs" />
     <Compile Include="Models\FareModel.cs" />
     <Compile Include="Models\LocationModel.cs" />
+    <Compile Include="Models\Lookup.cs" />
     <Compile Include="Models\MenuModel.cs" />
     <Compile Include="Models\PaymentModeModel.cs" />
     <Compile Include="Models\PaymentTermModel.cs" />
