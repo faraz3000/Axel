@@ -1,49 +1,294 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
-<!DOCTYPE html>
-<html lang="en">
-    <head runat="server">
-        <meta charset="utf-8" />
-        <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
-        <link href="<%: Url.Content("~/favicon.ico") %>" rel="shortcut icon" type="image/x-icon" />
-        <meta name="viewport" content="width=device-width" />
-        <%: Styles.Render("~/Content/css") %>
-        <%: Scripts.Render("~/bundles/modernizr") %>
-    </head>
-    <body>
-        <header>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title"><%: Html.ActionLink("your logo here", "Index", "Home") %></p>
-                </div>
-                <div class="float-right">
-                    <section id="login">
-                        <%: Html.Partial("_LoginPartial") %>
-                    </section>
-                    <nav>
-                        <ul id="menu">
-                            <li><%: Html.ActionLink("Home", "Index", "Home") %></li>
-                            <li><%: Html.ActionLink("About", "About", "Home") %></li>
-                            <li><%: Html.ActionLink("Contact", "Contact", "Home") %></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </header>
-        <div id="body">
-            <asp:ContentPlaceHolder ID="FeaturedContent" runat="server" />
-            <section class="content-wrapper main-content clear-fix">
-                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
-            </section>
-        </div>
-        <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET MVC Application</p>
-                </div>
-            </div>
-        </footer>
 
-        <%: Scripts.Render("~/bundles/jquery") %>
+<%--<!DOCTYPE html>--%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+    <link href="<%: Url.Content("~/favicon.ico") %>" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+
+
+    <%: Styles.Render("~/Content/style.css") %>
+    <%: Styles.Render("~/Content/css/font-families.css") %>
+    <%: Styles.Render("~/Content/themes/base/jquery.datepick.css") %>
+    <%: Scripts.Render("~/bundles/jquery") %>
+    <%: Scripts.Render("~/bundles/modernizr") %>
+
+    <%--<script src="../../JQGridReq/jquery-1.9.0.min.js" type="text/javascript"></script>--%>
+    <script src="//code.jquery.com/jquery-1.10.2.js" type="text/javascript"></script>
+    <script src="../../JQGridReq/jquery.jqGrid.js" type="text/javascript"></script>
+    <script src="../../JQGridReq/grid.locale-en.js" type="text/javascript"></script>
+    <script src="../../JQGridReq/civem.js" type="text/javascript"></script>
+
+    <link href="../../JQGridReq/jquery-ui-1.9.2.custom.css" rel="stylesheet" type="text/css" />
+    <link href="../../JQGridReq/ui.jqgrid.css" rel="stylesheet" type="text/css" />
+
+    <%--<%: Scripts.Render("//code.jquery.com/jquery-1.10.2.js") %>--%>
+    <%--<%: Scripts.Render("~/Scripts/jquery.plugin.js") %>--%>
+    <%--<%: Scripts.Render("~/Scripts/jquery.datepick.js") %>--%>
+    <link type="text/css" rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css" />
+    <%--<script src="//code.jquery.com/jquery-1.10.2.js" type="text/javascript"></script>--%>
+    <script src="../../JQGridReq/datepicker-jquery-ui.js" type="text/javascript"></script>
+    <style type="text/css">
+        .ui-datepicker
+        {
+            background: #298D66;
+            border: 1px solid #298D66;
+            color: #298D66;
+        }
+
+        .ui-datepicker-calendar
+        {
+            color: white;
+        }
+
+        .ui-datepicker table span
+        {
+            color: white;
+        }
+
+        .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default
+        {
+            background: #CCD17C;
+        }
+
+        .ui-widget-header
+        {
+            background: #CCD17C;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div id="zindex">
+        <div id="header">
+            <div class="wrapper">
+                <div id="logo">
+                    <a href="http://www.nialexisplatform.org">
+                        <img src="../Images/logo.png"  width="123" height="60" alt="Axel Connect" /></a>
+                </div>
+                <%if (!string.IsNullOrEmpty(Convert.ToString(Session["ContactRecordId"])))
+                  {%>
+                <%if (!string.IsNullOrEmpty(Convert.ToString(Session["CompanyName"])))
+                  {%>
+                <div id="logout" style="float: right; display: inline-block;"><a style="font-weight: bold; font-size: 14px; color: #c2720d;"><%=Session["LabelName"]%></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a style="font-weight: bold; font-size: 14px; color: #c2720d;"><%=Session["CompanyName"]%></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a id="btnLogout" style="font-weight: bold; color: #c2720d; font-size: 14px;" href="<%=Url.Action("Index","Home") %>">Logout</a></div>
+                <%}
+                  else
+                  {%>
+                <div id="logout" style="float: right; display: inline-block;"><a style="font-weight: bold; font-size: 14px; color: #c2720d;"><%=Session["LabelName"]%></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a id="btnLogout" style="font-weight: bold; color: #c2720d; font-size: 14px;" href="<%=Url.Action("Index","Home") %>">Logout</a></div>
+                <%}
+                  }%>
+            </div>
+        </div>
+
+        <div id="text" style="float: left; display: none;">Loading, please wait...</div>
+
+        <div id="preLoaderDiv" style="z-index: 1; height: 100%; width: 100%; position: fixed; display: none;">
+            <div id="preLoaderDiv1" style="z-index: 1; float: right; margin-top: 5px; margin-right: 5px">
+                <img id="img444" style="height: 40px;" src="/Images/animation.gif">
+            </div>
+
+        </div>
+        <div class="wrapper" style="z-index: 11;">
+            <div class="content_wrapper">
+                <% if (!String.IsNullOrEmpty(ViewBag.Message))
+                   { %>
+                <div class="warning forgotwarning">
+                    <p><%=Html.Raw(ViewBag.Message) %></p>
+                </div>
+                <% } %>
+
+                <div id="body">
+
+                   <img id="btnHelp" style="height: 23px; float: right; margin-bottom: 15px; display: none;"
+                        src="../../Images/Help.png" />
+
+                    <div id="Instructions" class="callout left" style="display: none;">
+                        <asp:ContentPlaceHolder ID="FeaturedContent" runat="server" />
+                    </div>
+
+                    <section class="content-wrapper main-content clear-fix">
+                        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+                    </section>
+                </div>
+            </div>
+        </div>
+        <footer style="margin-top: 6px;">
+            <div id="footer">
+                <div class="wrapper">
+                    <p>&copy; Copyright 2015 Excellence Chauffer</p>
+                </div>
+            </div>
+            <%--<div id="footer" class="clr" style="background:#c94e03; border-bottom-color:#c94e03;margin-top:120px;">
+			<div id="foot_left">
+				<p><img src="../../Images/footer_logo.png" width="36" height="23" alt="footer logo"> © Copyright 2014 Dynamic Positioning. All right reserved &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="<%= Url.Action("PrivacyPolicy","Home") %>">Privacy Policy</a>   |   <a href="<%= Url.Action("Index","Home") %>">Terms &amp; Conditions</a></p>
+			</div>
+			<div id="foot_right">
+				<h3>The Nautical Institute</h3>
+				<p>202 Lambeth Road, London, SE1 7LQ<br>T:+44 (0)20 7928 1351 F:+44(0)20 7401 2817 E: sec@nautinst.org</p>
+			</div>
+		</div>--%>
+        </footer>
         <asp:ContentPlaceHolder ID="ScriptsSection" runat="server" />
-    </body>
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                if ($("#Instructions").text().length > 47) {
+                    $('#btnHelp').show();
+                }
+                else { }
+            });
+            $(document).ready(function () {
+                if ($("#Instructions1").text().length > 47) {
+                    $('#btnHelp1').show();
+                }
+                else { }
+            });
+            $(document).ajaxStart(function () {
+                $('#text').show();
+                $('#preLoaderDiv').show();  // show Loading Div
+            })
+            $(document).ajaxStop(function () {
+                $('#text').hide();
+                $('#preLoaderDiv').hide(); // hide loading div
+            });
+            $(document).submit(function () {
+                $('#text').show();
+                $('#preLoaderDiv').show();  // show Loading Div
+            });
+
+            $('#btnLogout').click(function () {
+            });
+
+            function GoBack() {
+                var answer = confirm("Leaving this page would discard the changes. Are you sure?")
+                if (answer) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+            function isNumberKey(evt) {
+                var charCode = (evt.which) ? evt.which : event.keyCode;
+                if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            $(function () {
+                $('#popupDatepicker').datepicker({
+                    onClose: function calc() {
+                        var start = $("#popupDatepicker").datepicker("getDate");
+                        var end = $("#Datepicker").datepicker("getDate");
+                        var diff = new Date(end - start);
+                        var days = diff / 1000 / 60 / 60 / 24;
+                        if (days != "NaN" && parseInt(days, 10) > 0) {
+                            $("#noofdays").val((days + 1).toFixed(0));
+                        }
+                        else { $("#noofdays").val(""); }
+                    }
+                });
+                $('#Datepicker').datepicker({
+                    onClose: function calc() {
+                        var start = $("#popupDatepicker").datepicker("getDate");
+                        var end = $("#Datepicker").datepicker("getDate");
+                        var diff = new Date(end - start);
+                        var days = diff / 1000 / 60 / 60 / 24;
+                        if (days != "NaN" && parseInt(days, 10) > 0) {
+                            $("#noofdays").val((days + 1).toFixed(0));
+                        }
+                        else { $("#noofdays").val(""); }
+                    }
+                });
+                $('#Datepicker1').datepicker();
+                $('#Datepicker2').datepicker();
+
+                //$(function () {
+                //    $('#popupDatepicker').datepicker();
+                //    $('#Datepicker').datepicker();
+                //    $('#Datepicker1').datepicker();
+                //    $('#Datepicker2').datepicker();
+                //    $('#inlineDatepicker').datepick({
+                //        showOn: "button",
+                //        dateFormat: "dd/MM/yyyy",
+                //        buttonImage: "../Content/themes/base/images/calendar-blue.gif",
+                //        buttonImageOnly: true
+                //    });
+                //});
+                $(function () {
+                    $("#btnHelp").mouseover(function () {
+                        $("#Instructions").show();
+                    });
+                });
+                $(function () {
+                    $("#btnHelp").mouseleave(function () {
+                        $("#Instructions").hide();
+                    });
+                });
+
+                $(function () {
+                    $("#btnHelp1").mouseover(function () {
+                        $("#Instructions1").show();
+                    });
+                });
+                $(function () {
+                    $("#btnHelp1").mouseleave(function () {
+                        $("#Instructions1").hide();
+                    });
+                });
+
+                //$(function () {
+                //    $('input[type=submit]').click(function () {
+                //        $(this).prop("disabled", true);
+                //        $(this).closest('form').trigger('submit');
+                //    });
+                //});
+            });
+        </script>
+
+        <script type="text/javascript">
+            (function () {
+                var _fbq = window._fbq || (window._fbq = []);
+                if (!_fbq.loaded) {
+                    var fbds = document.createElement('script');
+                    fbds.async = true;
+                    fbds.src = '//connect.facebook.net/en_US/fbds.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(fbds, s);
+                    _fbq.loaded = true;
+                }
+                _fbq.push(['addPixelId', '714690271886438']);
+            })();
+            window._fbq = window._fbq || [];
+            window._fbq.push(['track', 'PixelInitialized', {}]);
+        </script>
+        <noscript>
+            <img height="1" width="1" alt="" style="display: none" src="https://www.facebook.com/tr?id=714690271886438&amp;ev=PixelInitialized" />
+        </noscript>
+
+
+        <script type="text/javascript">
+            /* <![CDATA[ */
+            var google_conversion_id = 983599908;
+            var google_custom_params = window.google_tag_params;
+            var google_remarketing_only = true;
+            /* ]]> */
+        </script>
+        <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+        </script>
+        <noscript>
+            <div style="display: inline;">
+                <img height="1" width="1" style="border-style: none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/983599908/?value=0&amp;guid=ON&amp;script=0" />
+            </div>
+        </noscript>
+    </div>
+</body>
 </html>

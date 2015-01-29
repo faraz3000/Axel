@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace AxelSys.Models
+namespace Axel.Admin
 {
     public enum Class
     {
@@ -13,7 +13,6 @@ namespace AxelSys.Models
     public class VehicleModel
     {
         public int SEQ_ID { get; set; }
-        public int CODE { get; set; }
         public string DESCRIPTION { get; set; }
         public string MANUFACTURER { get; set; }
         public Class? CLASS { get; set; }

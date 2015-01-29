@@ -2,21 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Axel.Admin.Models;
 
-namespace AxelSys.Models
+namespace Axel.Admin
 {
-    public enum Status
-    {
-        Cancelled, Completed, Dispatched, ReadyForDispatch
-    }
-    public enum CustomerType 
-    {
-        DefaultCustomer,RegisteredCompany,RegisteredIndividual
-    }
-    public enum PaymentTerms
-    {
-        AdvancePayment,PaymentOnDropOff,PaymentOnMonthEnd
-    }
 
     public class AppointmentModel
     {
@@ -24,10 +13,11 @@ namespace AxelSys.Models
         public int CUSTOMER_SEQ_ID { get; set; }
         public int DRIVER_SEQ_ID { get; set; }
         public int VEHICLE_SEQ_ID { get; set; }
-        public int CODE { get; set; }
+        
         public string NAME { get; set; }
         public string PHONE { get; set; }
-        public CustomerType? CUSTOMER_TYPE { get; set; }
+        public CustomerTypeModel? CUSTOMER_TYPE { get; set; }
+        
         public DateTime DATE { get; set; }
         public DateTime TIME { get; set; }
         public string VEHICLE { get; set; }
@@ -51,11 +41,11 @@ namespace AxelSys.Models
         public string DISTANCE { get; set; }
         public string OTHER_CHARGES { get; set; }
         public string TOTAL_AMOUNT { get; set; }
-        public PaymentTerms? PAYMENT_TERMS { get; set; }
+        public PaymentTermModel? PAYMENT_TERMS { get; set; }
         public string ADDITIONAL_COMMENTS { get; set; }
         public string DRIVING_DIRECTIONS { get; set; }
         public string DRIVER { get; set; }
-        public Status? STATUS { get; set; }
+        public StatusModel? STATUS { get; set; }
         
     }
 }

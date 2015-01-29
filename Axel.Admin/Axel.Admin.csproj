@@ -177,12 +177,27 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AppointmentModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />
-    <Compile Include="Models\DriverModel.cs" />
+    <Compile Include="Models\CustomerTypeModel.cs" />
+    <Compile Include="Models\DriverModel .cs" />
+    <Compile Include="Models\FareModel.cs" />
+    <Compile Include="Models\LocationModel.cs" />
+    <Compile Include="Models\MenuModel.cs" />
+    <Compile Include="Models\PaymentModeModel.cs" />
+    <Compile Include="Models\PaymentTermModel.cs" />
+    <Compile Include="Models\StatusModel.cs" />
+    <Compile Include="Models\TransactionModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\VehicleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\font-families.css" />
+    <Content Include="Content\fonts\Roboto-Bold-webfont.svg" />
+    <Content Include="Content\fonts\Roboto-Light-webfont.svg" />
+    <Content Include="Content\fonts\Roboto-Medium-webfont.svg" />
+    <Content Include="Content\fonts\Roboto-Regular-webfont.svg" />
+    <Content Include="Content\fonts\Roboto-Thin-webfont.svg" />
+    <Content Include="Content\style.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -239,6 +254,21 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Content\fonts\Roboto-Bold-webfont.eot" />
+    <Content Include="Content\fonts\Roboto-Bold-webfont.ttf" />
+    <Content Include="Content\fonts\Roboto-Bold-webfont.woff" />
+    <Content Include="Content\fonts\Roboto-Light-webfont.eot" />
+    <Content Include="Content\fonts\Roboto-Light-webfont.ttf" />
+    <Content Include="Content\fonts\Roboto-Light-webfont.woff" />
+    <Content Include="Content\fonts\Roboto-Medium-webfont.eot" />
+    <Content Include="Content\fonts\Roboto-Medium-webfont.ttf" />
+    <Content Include="Content\fonts\Roboto-Medium-webfont.woff" />
+    <Content Include="Content\fonts\Roboto-Regular-webfont.eot" />
+    <Content Include="Content\fonts\Roboto-Regular-webfont.ttf" />
+    <Content Include="Content\fonts\Roboto-Regular-webfont.woff" />
+    <Content Include="Content\fonts\Roboto-Thin-webfont.eot" />
+    <Content Include="Content\fonts\Roboto-Thin-webfont.ttf" />
+    <Content Include="Content\fonts\Roboto-Thin-webfont.woff" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
@@ -254,6 +284,8 @@
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Views\Home\ForgotPassword.aspx" />
+    <Content Include="Views\Home\PrivacyPolicy.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -313,16 +345,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:40150/</IISUrl>
-          <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
-          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

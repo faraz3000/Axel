@@ -1,51 +1,61 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
 
-<asp:Content ID="indexTitle" ContentPlaceHolderID="TitleContent" runat="server">
-    Home Page - My ASP.NET MVC Application
+<asp:Content ID="loginTitle" ContentPlaceHolderID="TitleContent" runat="server">
+    Login - Dynamic Positioning
 </asp:Content>
 
-<asp:Content ID="indexFeatured" ContentPlaceHolderID="FeaturedContent" runat="server">
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>Home Page.</h1>
-                <h2><%: ViewBag.Message %></h2>
-            </hgroup>
-            <p>
-                To learn more about ASP.NET MVC visit
-                <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-                The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET MVC.
-                If you have any questions about ASP.NET MVC visit
-                <a href="http://forums.asp.net/1146.aspx/1?MVC" title="ASP.NET MVC Forum">our forums</a>.
-            </p>
+<asp:Content ID="loginContent" ContentPlaceHolderID="MainContent" runat="server">
+    <div id="intro_login_register">
+        <h1>Login Now</h1>
+        `
+        <img src="/Images/login_dots.png" width="7" height="64" alt="dots" />
+        <div class="box login">
+            <form action="#" method="post" class="form">
+                <input type="text" class="text_field" value="" name="Attribute020" placeholder="- User Name -" />
+                <input type="password" class="text_field" value="" name="Attribute022" placeholder="- Password -" />
+                <a href="<%= Url.Action("ForgotPassword", "Home") %>" class="forpassword">Forgot Password</a>
+                <div class="back" style="float: right;">
+                    <input type="submit" id="submit" class="button loginbtn" value="Login" style="bottom: 0px; right: 0px; position: static;" />
+                    <a href="<%= Url.Action("DPIndex", "Home") %>" style="float: left;">Back</a>
+                </div>
+            </form>
         </div>
-    </section>
+    </div>
+
 </asp:Content>
 
-<asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h3>We suggest the following:</h3>
-    <ol class="round">
-        <li class="one">
-            <h5>Getting Started</h5>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and that gives you full control over markup
-            for enjoyable, agile development. ASP.NET MVC includes many features that enable
-            fast, TDD-friendly development for creating sophisticated applications that use
-            the latest web standards.
-            <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a>
-        </li>
+<asp:Content ID="Content3" ContentPlaceHolderID="FeaturedContent" runat="server">
+    Please login using your username and password. On the new Alexis Platform, you username will be the email address that you used when registering with The Nautical Institute. If you are revalidating and you do not know your login details, please contact the NI with the following details:
+    <br />
+    <br />
+    -Name
+    <br />
+    -Date of birth
+    <br />
+    -Certificate
+    <br />
+    -Number
+    <br />
+    -Certificate issue date
+    <br />
+    -Personal email address
 
-        <li class="two">
-            <h5>Add NuGet packages and jump-start your coding</h5>
-            NuGet makes it easy to install and update free libraries and tools.
-            <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a>
-        </li>
+    <br />
+    <br />
+    The Nautical Institute will then be able to update your details so that you are able to log into the new system.
 
-        <li class="three">
-            <h5>Find Web Hosting</h5>
-            You can easily find a web hosting company that offers the right mix of features
-            and price for your applications.
-            <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
-        </li>
-    </ol>
+    <br />
+    <br />
+    Please note that the forgotten password option will only work if you have an email address registered on your account. 
+</asp:Content>
+
+<asp:Content ID="Content4" ContentPlaceHolderID="ScriptsSection" runat="server">
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            //alert("start");
+            $('#logout').hide();  // show Loading Div
+        });
+
+    </script>
 </asp:Content>
