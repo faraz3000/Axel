@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using AxelSys.Models;
 
 namespace AxelSys.Models
 {
@@ -56,6 +57,12 @@ namespace AxelSys.Models
         public string DRIVING_DIRECTIONS { get; set; }
         public string DRIVER { get; set; }
         public Status? STATUS { get; set; }
-        
+        public string INVOICE_STATUS { get; set; }
+        public string PAID_AMOUNT { get; set; }
+
+        public virtual ICollection<CustomerModel> CUSTOMER { get; set; }
+        public virtual DriverModel DRIVER { get; set; }
+        public virtual VehicleModel Vehicle { get; set; }
+      
     }
 }
