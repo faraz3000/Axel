@@ -48,7 +48,7 @@ namespace Axel.Admin.Models
         public DateTime MOT_EXPIRY_DATE { get; set; }
         public DateTime ROAD_TAX_EXPIRY_DATE { get; set; }
         public DateTime INSURANCE_EXPIRY_DATE { get; set; }
-        public int REGISTRATION_DATE { get; set; }
+        public int REGISTRATION_NO { get; set; }
         public string COMMISSION { get; set; }
 
     }
