@@ -13,13 +13,14 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Axel.Admin</RootNamespace>
     <AssemblyName>Axel.Admin</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,6 +30,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,25 +39,24 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Brill.DAL">
-      <HintPath>App_Data\Brill.DAL.dll</HintPath>
+    <Reference Include="Brill">
+      <HintPath>App_Data\Brill.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -117,6 +118,7 @@
       <Private>True</Private>
       <HintPath>..\Axel.Web\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\Axel.Web\packages\Microsoft.AspNet.WebPages.Data.2.0.20710.0\lib\net40\WebMatrix.Data.dll</HintPath>
@@ -169,28 +171,26 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AppointmentController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DriverController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\VehicleController.cs" />
-    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="Filters\SessionTimeOutRedirectController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AppointmentModel.cs" />
+    <Compile Include="Models\LookupModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />
-    <Compile Include="Models\CustomerTypeModel.cs" />
     <Compile Include="Models\DriverModel .cs" />
+    <Compile Include="Models\DropDownModel.cs" />
     <Compile Include="Models\FareModel.cs" />
-    <Compile Include="Models\LocationModel.cs" />
-    <Compile Include="Models\Lookup.cs" />
+    <Compile Include="Models\HelperModel.cs" />
+    <Compile Include="Models\InvoiceModel.cs" />
     <Compile Include="Models\MenuModel.cs" />
-    <Compile Include="Models\PaymentModeModel.cs" />
-    <Compile Include="Models\PaymentTermModel.cs" />
     <Compile Include="Models\ReceiptModel.cs" />
-    <Compile Include="Models\StatusModel.cs" />
-    <Compile Include="Models\TransactionModel.cs" />
+    <Compile Include="Models\UserAttributeModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\VehicleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -274,7 +274,16 @@
     <Content Include="Content\fonts\Roboto-Thin-webfont.eot" />
     <Content Include="Content\fonts\Roboto-Thin-webfont.ttf" />
     <Content Include="Content\fonts\Roboto-Thin-webfont.woff" />
+    <Content Include="Images\animation.gif" />
+    <Content Include="Images\car_bg.png" />
+    <Content Include="Images\circle.png" />
+    <Content Include="Images\header_bg.png" />
+    <Content Include="Images\Help.png" />
+    <Content Include="Images\login_dots.png" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\Notebook.png" />
     <Content Include="JQGridReq\jquery.min.map" />
+    <None Include="Properties\PublishProfiles\Axel.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="JQGridReq\civem.js" />
     <Content Include="JQGridReq\datepicker-jquery-ui.js" />
@@ -316,10 +325,16 @@
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
-    <Content Include="Views\Admin\Index_Dashboard.aspx" />
-    <Content Include="Views\Admin\Index_Reports.aspx" />
-    <Content Include="Views\Admin\Index_Settings.aspx" />
-    <Content Include="Views\Admin\Index_Setup.aspx" />
+    <Content Include="Views\Admin\Dashboard.aspx" />
+    <Content Include="Views\Admin\Reports.aspx" />
+    <Content Include="Views\Admin\Settings.aspx" />
+    <Content Include="Views\Admin\Setup.aspx" />
+    <Content Include="Views\Appointment\Book_App_Car.aspx" />
+    <Content Include="Views\Appointment\Book_App_Customer.aspx" />
+    <Content Include="Views\Appointment\Book_App_Driver.aspx" />
+    <Content Include="Views\Appointment\Book_App_Fare.aspx" />
+    <Content Include="Views\Appointment\Book_App_Location.aspx" />
+    <Content Include="Views\Appointment\WebPage.aspx" />
     <Content Include="Views\Customer\Index.aspx" />
     <Content Include="Views\Customer\WebPage.aspx" />
     <Content Include="Views\Driver\Index.aspx" />

@@ -5,18 +5,15 @@ using System.Web;
 
 namespace Axel.Admin.Models
 {
-    public enum Class
-    {
-        BusinessClass,EconomyClass 
-    }
-
-    public class VehicleModel
+    public class VehicleModel: UserAttributeModel
     {
         public int SEQ_ID { get; set; }
+        public string MANUFACTURER_SEQ_ID { get; set; }
+        public int CLASS_TYPE_SEQ_ID { get; set; }
         public string DESCRIPTION { get; set; }
-        public string MANUFACTURER { get; set; }
-        public Class? CLASS { get; set; }
-        public bool PICTURE { get; set; }
+        public string BASICFARE { get; set; }
+        public string ADDITIONALKMFARE { get; set; }
+        public string PICTURE { get; set; }
         public bool ACTIVE { get; set; }
     }
 }

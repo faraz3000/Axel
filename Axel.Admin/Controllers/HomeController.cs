@@ -8,6 +8,7 @@ using System.Xml;
 using System.Data;
 using System.Text;
 using System.Xml.Linq;
+using Brill;
 
 
 namespace Axel.Admin.Controllers
@@ -21,10 +22,42 @@ namespace Axel.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(UserModel Model)
+        public ActionResult Index(UserModel Model, string ReturnUrl= null)
         {
-            Session["USERID"] = 1;
-            return RedirectToAction("Index_Dashboard", "Admin");
+            try
+            {
+                new Brill.Helper().CreateTableInDatabaseByModel(new VehicleModel());
+                //new Brill.Helper().CreateTableInDatabaseByModel(new AppointmentModel());
+            }
+            catch { }
+            
+            if (string.IsNullOrEmpty(Model.USER_NAME))
+            {
+                return View(Model);
+            }
+            if (string.IsNullOrEmpty(Model.PASSWORD))
+            {
+                return View(Model);
+            }
+
+            Model = new Brill.Helper().SelectModelFromDatabase(Model);
+            if (Model.SEQ_ID > 0)
+            {
+                Session["USERID"] = Model.SEQ_ID;
+                if (ReturnUrl == null)
+                {
+                    return RedirectToAction("Dashboard", "Admin");
+                }
+                else
+                {
+                    return Redirect(ReturnUrl);
+                }
+            }
+            else
+            {
+                ViewBag.Message = "Invalid username and password";
+                return View(Model);
+            }
         }
 
         public ActionResult About()

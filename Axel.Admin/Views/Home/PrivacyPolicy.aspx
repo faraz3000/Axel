@@ -2,7 +2,7 @@
 
 
 <asp:Content ID="indexTitle" ContentPlaceHolderID="TitleContent" runat="server">
-    Privacy Policy - Dynamic Positioning
+    Privacy Policy - Excellence Chauffeurs
 </asp:Content>
 
 <asp:Content ID="indexFeatured" ContentPlaceHolderID="FeaturedContent" runat="server">

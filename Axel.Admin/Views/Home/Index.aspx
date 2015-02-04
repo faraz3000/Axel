@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Axel.Admin.Models.UserModel>" %>
 
 <asp:Content ID="loginTitle" ContentPlaceHolderID="TitleContent" runat="server">
-    Login - Dynamic Positioning
+    Login - Excellence Chauffeurs
 </asp:Content>
 
 <asp:Content ID="loginContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -11,12 +11,12 @@
         <img src="/Images/login_dots.png" width="7" height="64" alt="dots" />
         <div class="box login">
             <form action="#" method="post" class="form">
-                <input type="text" class="text_field" value="" name="Attribute020" placeholder="- User Name -" />
-                <input type="password" class="text_field" value="" name="Attribute022" placeholder="- Password -" />
+                <input type="text" class="text_field" value="" name="USER_NAME" placeholder="- User Name -" />
+                <input type="password" class="text_field" value="" name="PASSWORD" placeholder="- Password -" />
                 <a href="<%= Url.Action("ForgotPassword", "Home") %>" class="forpassword">Forgot Password</a>
                 <div class="back" style="float: right;">
                     <input type="submit" id="submit" class="button loginbtn" value="Login" style="bottom: 0px; right: 0px; position: static;" />
-                    <a href="<%= Url.Action("DPIndex", "Home") %>" style="float: left;">Back</a>
+                    
                 </div>
             </form>
         </div>

@@ -9,162 +9,169 @@
     <div class="inner_wrapper">
         <div class="heading" style="margin-bottom: 30px;">
             <h1>Driver</h1>
-            <h3 style="font-size: 16px; line-height: normal; margin: 10px 0; font-weight: bold;">Enter Driver Details</h3>
+
         </div>
         <div id="enter-log-book" class="typography">
             <form action="#" method="post" class="form log-book-form">
+                <%=Html.Hidden("CREATED_BY",Model.CREATED_BY)%>
+                <%=Html.Hidden("CREATED_ON",Model.CREATED_ON)%>
+                <h3 style="font-size: 16px; line-height: normal; margin: 10px 0; font-weight: bold;">Driver's Personal Details</h3>
                 <div class="rows clr">
                     <div class="column">
+                        <%= Html.Hidden("SEQ_ID",Model.SEQ_ID) %>
                         <label>First Name:</label>
-                        <% = Html.TextBox("FirstName", Model.FIRST_NAME, new { @class = "text_field_required", @readonly="readonly"})%>
+                        <% = Html.TextBox("FIRST_NAME", Model.FIRST_NAME, new { @class = "text_field"})%>
                     </div>
                     <div class="column">
                         <label>Last Name:</label>
-                        <% = Html.TextBox("LastName", Model.LAST_NAME, new { @class = "text_field_required", @readonly="readonly"})%>
+                        <% = Html.TextBox("LAST_NAME", Model.LAST_NAME, new { @class = "text_field"})%>
                     </div>
                     <div class="column">
                         <label>DOB:</label>
-                        <%= Html.TextBox("DOB", Model.DOB== null ? "" : String.Format ("{0:dd/MM/yyyy}", Model.DOB), new { @class = "text_field", @id="popupDatepicker", @autocomplete="off" })%>
+                        <%= Html.TextBox("DOB", Model.DOB== null ? " " : String.Format ("{0:dd/MM/yyyy}", Model.DOB), new { @class = "text_field", @id="popupDatepicker", @autocomplete="off" })%>
                     </div>
-                    <div class="column">
-                        <label>Nationality:</label>
-                        <% = Html.TextBox("Nationality", Model.NATIONALITY, new { @class = "text_field_required", @readonly="readonly"})%>
-
+                    <div class="column" style="text-align: right;">
+                        <label>&nbsp;</label>
+                        <% = Html.CheckBox("ACTIVE", Model.ACTIVE, new { @class = "checkbox"})%>Active
                     </div>
                 </div>
                 <div class="rows clr">
 
                     <div class="column">
+                        <label>Nationality:</label>
+                        <% = Html.TextBox("NATIONALITY", Model.NATIONALITY, new { @class = "text_field"})%>
+                    </div>
+                    <div class="column">
                         <label>Phone No :</label>
-                       <% = Html.TextBox("PhoneNo", Model.PHONE_NO, new { @class = "text_field_required", @readonly="readonly"})%>
+                        <% = Html.TextBox("PHONE_NO", Model.PHONE_NO, new { @class = "text_field"})%>
                     </div>
                     <div class="column">
                         <label>Email:</label>
-                        <% = Html.TextBox("Email", Model.EMAIL, new { @class = "text_field_required", @readonly="readonly"})%>
+                        <% = Html.TextBox("EMAIL", Model.EMAIL, new { @class = "text_field"})%>
                     </div>
+
+                </div>
+
+                <h3 style="font-size: 16px; line-height: normal; margin: 10px 0; font-weight: bold;">Driver's Job Details</h3>
+
+                <div class="rows clr">
                     <div class="column">
                         <label>Joining Date:</label>
-                        <%= Html.TextBox("JoiningDate", Model.JOINING_DATE== null ? "" : String.Format ("{0:dd/MM/yyyy}", Model.JOINING_DATE), new { @class = "text_field", @id="popupDatepicker", @autocomplete="off" })%>
+                        <%= Html.TextBox("JOINING_DATE", Model.JOINING_DATE== null ? "" : String.Format ("{0:dd/MM/yyyy}", Model.JOINING_DATE), new { @class = "text_field", @id="Datepicker1", @autocomplete="off" })%>
                     </div>
                     <div class="column">
                         <label>Leaving Date:</label>
-                        <%= Html.TextBox("LeavingDate", Model.LEAVING_DATE== null ? "" : String.Format ("{0:dd/MM/yyyy}", Model.LEAVING_DATE), new { @class = "text_field", @id="popupDatepicker", @autocomplete="off" })%>
+                        <%= Html.TextBox("LEAVING_DATE", Model.LEAVING_DATE== null ? "" : String.Format ("{0:dd/MM/yyyy}", Model.LEAVING_DATE), new { @class = "text_field", @id="Datepicker2", @autocomplete="off" })%>
                     </div>
                 </div>
 
-                 <div class="rows clr">
+                <h3 style="font-size: 16px; line-height: normal; margin: 10px 0; font-weight: bold;">Driver's Address Details</h3>
+
+                <div class="rows clr">
                     <div class="column">
-                        <label>Active:</label>
-                        <% = Html.CheckBox("Active", Model.ACTIVE, new { @class = "text_field_required", @readonly="readonly"})%>
+                        <label>County:</label>
+                        <%= Html.DropDownList("COUNTY_SEQ_ID", ViewData["CountyList"] as SelectList, "", new { @class="text_field",@style="height:40px;" , @required="required" })%>
                     </div>
                     <div class="column">
                         <label>City:</label>
-                       <%= Html.DropDownList("City", ViewData["CityList"] as SelectList, "", new { @class="text_field",@style="height:40px;" , @required="required" })%>
+                        <%= Html.DropDownList("CITY_SEQ_ID", ViewData["CityList"] as SelectList, "", new { @class="text_field",@style="height:40px;" , @required="required" })%>
                     </div>
-                    <div class="column">
-                        <label>County:</label>
-                        <%= Html.DropDownList("County", ViewData["CountyList"] as SelectList, "", new { @class="text_field",@style="height:40px;" , @required="required" })%>
-                    </div>
+
                     <div class="column">
                         <label>Street Name:</label>
-                       <% = Html.TextBox("StreetName", Model.STREET_NAME, new { @class = "text_field_required", @readonly="readonly"})%>
+                        <% = Html.TextBox("STREET_NAME", Model.STREET_NAME, new { @class = "text_field"})%>
                     </div>
-                </div>
-
-                 <div class="rows clr">
                     <div class="column">
                         <label>House No:</label>
-                        <% = Html.TextBox("HouseNo", Model.HOUSE_NO, new { @class = "text_field_required", @readonly="readonly"})%>
+                        <% = Html.TextBox("HOUSE_NO", Model.HOUSE_NO, new { @class = "text_field"})%>
                     </div>
                     <div class="column">
                         <label>Post Code:</label>
-                        <% = Html.TextBox("PostCode", Model.POST_CODE, new { @class = "text_field_required", @readonly="readonly"})%>
+                        <% = Html.TextBox("POST_CODE", Model.POST_CODE, new { @class = "text_field"})%>
                     </div>
+                </div>
+
+                <h3 style="font-size: 16px; line-height: normal; margin: 10px 0; font-weight: bold;">Official Details</h3>
+
+                <div class="rows clr">
                     <div class="column">
                         <label>DVLA License:</label>
-                        <% = Html.TextBox("DVLALicense", Model.DVLA_LICENSE, new { @class = "text_field_required", @readonly="readonly"})%>
+                        <% = Html.TextBox("DVLA_LICENSE", Model.DVLA_LICENSE, new { @class = "text_field"})%>
+                    </div>
+
+                    <div class="column">
+                        <label>DVLA Expiry:</label>
+                        <%= Html.TextBox("DVLA_EXPIRY", Model.DVLA_EXPIRY== null ? "" : String.Format ("{0:dd/MM/yyyy}", Model.DVLA_EXPIRY), new { @class = "text_field", @id="Datepicker4", @autocomplete="off" })%>
                     </div>
                     <div class="column">
                         <label>PCO License:</label>
-                       <% = Html.TextBox("PCOLicense", Model.PCO_LICENSE, new { @class = "text_field_required", @readonly="readonly"})%>
+                        <% = Html.TextBox("PCO_LICENSE", Model.PCO_LICENSE, new { @class = "text_field"})%>
+                    </div>
+
+                    <div class="column">
+                        <label>PCO Expiry Date:</label>
+                        <%= Html.TextBox("PCO_EXPIRY_DATE", Model.PCO_EXPIRY_DATE== null ? "" : String.Format ("{0:dd/MM/yyyy}", Model.PCO_EXPIRY_DATE), new { @class = "text_field", @id="Datepicker3", @autocomplete="off" })%>
                     </div>
                 </div>
 
-                 <div class="rows clr">
-                    <div class="column">
-                        <label>Driver Type:</label>
-                        <%= Html.DropDownList("DriverType", ViewData["DriverTypeList"] as SelectList, "", new { @class="text_field",@style="height:40px;" , @required="required" })%>
-                    </div>
-                    <div class="column">
-                        <label>Ni No:</label>
-                        <% = Html.TextBox("NINo", Model.NI_NO, new { @class = "text_field_required", @readonly="readonly"})%>
-                    </div>
-                    <div class="column">
-                        <label>PCO Expiry Date:</label>
-                        <%= Html.TextBox("PCOExpiryDate", Model.PCO_EXPIRY_DATE== null ? "" : String.Format ("{0:dd/MM/yyyy}", Model.PCO_EXPIRY_DATE), new { @class = "text_field", @id="popupDatepicker", @autocomplete="off" })%>
-                    </div>
-                    <div class="column">
-                        <label>DVLA Expiry:</label>
-                       <% = Html.TextBox("DVLAExpiry", Model.DVLA_Expiry, new { @class = "text_field_required", @readonly="readonly"})%>
-                    </div>
-                </div>
-               
                 <div class="rows clr">
                     <div class="column">
-                        <label>Car Owner:</label>
-                        <%= Html.DropDownList("CarOwner", ViewData["CarOwnerList"] as SelectList, "", new { @class="text_field",@style="height:40px;" , @required="required" })%>
-                    </div>
-                    <div class="column">
-                        <label>Vehicle Type:</label>
-                        <%= Html.DropDownList("VehicleType", ViewData["VehicleTypeList"] as SelectList, "", new { @class="text_field",@style="height:40px;" , @required="required" })%>
-                    </div>
-                    <div class="column">
-                        <label>Colour:</label>
-                        <% = Html.TextBox("Colour", Model.COLOUR, new { @class = "text_field_required", @readonly="readonly"})%>
+                        <label>Driver Type:</label>
+                        <%= Html.DropDownList("DRIVER_TYPE_SEQ_ID", ViewData["DriverTypeList"] as SelectList, "", new { @class="text_field",@style="height:40px;" , @required="required" })%>
                     </div>
                     <div class="column">
                         <label>Car Type:</label>
-                       <%= Html.DropDownList("CarType", ViewData["CarTypeList"] as SelectList, "", new { @class="text_field",@style="height:40px;" , @required="required" })%>
+                        <%= Html.DropDownList("CAR_TYPE_SEQ_ID", ViewData["CarTypeList"] as SelectList, "", new { @class="text_field",@style="height:40px;" , @required="required" })%>
+                    </div>
+                    <div class="column">
+                        <label>Car Owner:</label>
+                        <%= Html.DropDownList("CAR_OWNER_SEQ_ID", ViewData["CarOwnerList"] as SelectList, "", new { @class="text_field",@style="height:40px;" , @required="required" })%>
+                    </div>
+                    <div class="column">
+                        <label>Vehicle Type:</label>
+                        <%= Html.DropDownList("VEHICLE_TYPE_SEQ_ID", ViewData["VehicleTypeList"] as SelectList, "", new { @class="text_field",@style="height:40px;" , @required="required" })%>
+                    </div>
+                    <div class="column">
+                        <label>Colour:</label>
+                        <% = Html.DropDownList("COLOUR_SEQ_ID", ViewData["ColourList"] as SelectList, "", new { @class="text_field",@style="height:40px;" , @required="required" })%>
                     </div>
                 </div>
-
+                <hr style="width: 910px; margin-left: 0px;" />
                 <div class="rows clr">
 
                     <div class="column">
+                        <label>Ni No:</label>
+                        <% = Html.TextBox("NI_NO", Model.NI_NO, new { @class = "text_field"})%>
+                    </div>
+                    <div class="column">
                         <label>Registration No:</label>
-                       <% = Html.TextBox("RegistrationNo", Model.REGISTRATION_NO, new { @class = "text_field_required", @readonly="readonly"})%>
+                        <% = Html.TextBox("REGISTRATION_NO", Model.REGISTRATION_NO, new { @class = "text_field"})%>
                     </div>
                     <div class="column">
                         <label>Road Tax Expiry Date:</label>
-                        <%= Html.TextBox("RoadTaxExpiryDate", Model.ROAD_TAX_EXPIRY_DATE== null ? "" : String.Format ("{0:dd/MM/yyyy}", Model.ROAD_TAX_EXPIRY_DATE), new { @class = "text_field", @id="popupDatepicker", @autocomplete="off" })%>
+                        <%= Html.TextBox("ROAD_TAX_EXPIRY_DATE", Model.ROAD_TAX_EXPIRY_DATE== null ? "" : String.Format ("{0:dd/MM/yyyy}", Model.ROAD_TAX_EXPIRY_DATE), new { @class = "text_field", @id="Datepicker5", @autocomplete="off" })%>
                     </div>
                     <div class="column">
                         <label>Insurance Expiry Date:</label>
-                        <%= Html.TextBox("InsuranceExpiryDate", Model.INSURANCE_EXPIRY_DATE== null ? "" : String.Format ("{0:dd/MM/yyyy}", Model.INSURANCE_EXPIRY_DATE), new { @class = "text_field", @id="popupDatepicker", @autocomplete="off" })%>
+                        <%= Html.TextBox("INSURANCE_EXPIRY_DATE", Model.INSURANCE_EXPIRY_DATE== null ? "" : String.Format ("{0:dd/MM/yyyy}", Model.INSURANCE_EXPIRY_DATE), new { @class = "text_field", @id="Datepicker6", @autocomplete="off" })%>
                     </div>
                     <div class="column">
                         <label>MOT Expiry Date:</label>
-                        <%= Html.TextBox("MOTExpiryDate", Model.MOT_EXPIRY_DATE== null ? "" : String.Format ("{0:dd/MM/yyyy}", Model.MOT_EXPIRY_DATE), new { @class = "text_field", @id="popupDatepicker", @autocomplete="off" })%>
+                        <%= Html.TextBox("MOT_EXPIRY_DATE", Model.MOT_EXPIRY_DATE== null ? "" : String.Format ("{0:dd/MM/yyyy}", Model.MOT_EXPIRY_DATE), new { @class = "text_field", @id="Datepicker7", @autocomplete="off" })%>
                     </div>
-                </div>
-
-                <div class="rows clr">
 
                     <div class="column">
                         <label>Commission (%):</label>
-                       <% = Html.TextBox("Commission(%)", Model.COMMISSION, new { @class = "text_field_required", @readonly="readonly"})%>
-                    </div>
-                    <div class="column">
-                        
-                    </div>
-                    <div class="column">
-                        
-                    </div>
-                    <div class="column">
-                        
+                        <% = Html.TextBox("COMMISSION", Model.COMMISSION, new { @class = "text_field"})%>
                     </div>
                 </div>
-                    </div>
+
+                <hr style="width: 910px; margin-left: 0px;" />
+                <div class="back" style="float: right; padding-right: 38px;">
+                    <a href="<%= Url.Action("Index", "Driver") %>" onclick="return GoBack();">Back to Drivers</a>
+
+                    <input type="submit" class="button small_margin" value="Save and Enter Driver" name="savenew" />
+                    <input type="submit" class="button small_margin cgreen" value="Save and Back to Index" name="submit" />
                 </div>
             </form>
         </div>
@@ -175,7 +182,6 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="FeaturedContent" runat="server">
-  
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="ScriptsSection" runat="server">

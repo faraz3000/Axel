@@ -5,17 +5,11 @@ using System.Web;
 
 namespace Axel.Admin.Models
 {
-
-    public enum UserType 
-    {
-        Admin,Driver,Customer
-    }
-
-    public class UserModel
+    public class UserModel: UserAttributeModel
     {
         public int  SEQ_ID { get; set; }
         public string USER_NAME { get; set; }
         public string PASSWORD { get; set; }
-        public UserType? USER_TYPE { get; set; }
+        public int USER_TYPE_SEQ_ID { get; set; }
     }
 }

@@ -5,10 +5,10 @@ using System.Web;
 
 namespace Axel.Admin.Models
 {
-    public class LocationModel
+    public class DropDownModel
     {
         public int SEQ_ID { get; set; }
-        public string PICK_UP_LOCATION { get; set; }
-        public string DROP_OFF_LOCATION { get; set; }
+        public int LOOKUP_SEQ_ID { get; set; }
+        public string ATTR_NAME { get; set; }
     }
 }

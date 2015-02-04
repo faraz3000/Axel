@@ -5,64 +5,75 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    
-            <div class="heading" style="margin-bottom: 30px;">
-                    <h1>Driver</h1>
-        </div>
+
+    <div class="heading" style="margin-bottom: 30px;">
+        <h1>Driver</h1>
+    </div>
 
     <div id="Div1" class="typography fivecolumn">
 
-        <%--<h3>List Of Induction Courses</h3>
-        <a href="<%= Url.Action("Black_OSO_WebPage", "InductionCourse")%>" class="tab_link"><img src="../../Images/NoteBook.png" style="height: 20px; margin: -6px 5px;" />Add more Induction Courses</a>--%>
+        <h3>List Of Drivers</h3>
+        <a href="<%= Url.Action("WebPage", "Driver")%>" class="tab_link">
+            <img src="../../Images/NoteBook.png" style="height: 20px; margin: -6px 5px;" />Add a Driver</a>
         <div class="table">
             <div class="row clr">
                 <div class="column heading_column">
-                    <strong>First Name</strong>
+                    <strong>Action</strong>
                 </div>
                 <div class="column heading_column">
-                    <strong>Last Name</strong>
+                    <strong>Full Name</strong>
+                </div>
+                <div class="column heading_column">
+                    <strong>Phone No.</strong>
                 </div>
                 <div class="column heading_column">
                     <strong>Email</strong>
                 </div>
                 <div class="column heading_column">
-                    <strong>Phone No</strong>
-                </div>
-                <div class="column heading_column">
-                    <strong>DOB</strong>
+                    <strong>Customer Type</strong>
                 </div>
 
             </div>
-            <% foreach (var IndCor in Model)
+            <% foreach (var m in Model)
                { %>
             <div class="row clr">
                 <div class="column">
-                    <%= Html.Encode(string.IsNullOrEmpty(IndCor.FIRST_NAME)?"-":IndCor.FIRST_NAME)%>
+                    <a href="<%= Url.Action("WebPage", "Driver", new { ID = m.SEQ_ID })%>">
+                        <img alt="Edit" style="margin: 0px 10px -4px 10px;" src="../../Images/edit_inline.gif" /></a>
+                    | <a href="<%= Url.Action("Delete", "Driver", new { ID = m.SEQ_ID })%>">
+                        <img alt="Delete" style="margin: 0px 10px -4px 10px;" src="../../Images/delete_inline.gif" /></a>
                 </div>
                 <div class="column">
-                    <%= Html.Encode(string.IsNullOrEmpty(IndCor.LAST_NAME)?"-":IndCor.LAST_NAME)%>
-                    </div>
-                <div class="column"> 
-                    <%= Html.Encode(string.IsNullOrEmpty(IndCor.EMAIL)?"-":IndCor.EMAIL)%>
+                    <%= Html.Encode(string.IsNullOrEmpty(m.FIRST_NAME)?"-":m.FIRST_NAME +" "+ m.LAST_NAME)%>
                 </div>
                 <div class="column">
-                    <%= Html.Encode(string.IsNullOrEmpty(IndCor.PHONE_NO)?"-":IndCor.PHONE_NO)%>
+                    <%= Html.Encode(string.IsNullOrEmpty(m.PHONE_NO)?"-":m.PHONE_NO)%>
                 </div>
                 <div class="column">
-                    <%= Html.TextBox("DOB", IndCor.DOB== null ? "" : String.Format ("{0:dd/MM/yyyy}", IndCor.DOB), new { @class = "text_field", @id="popupDatepicker", @autocomplete="off" })%>
+                    <%= Html.Encode(string.IsNullOrEmpty(m.EMAIL)?"-":m.EMAIL)%>
+                </div>
+                <div class="column">
+                    <%= Html.Encode(((SelectList)ViewData["DriverTypeList"]).Where(i => i.Value == Convert.ToString(m.DRIVER_TYPE_SEQ_ID)).SingleOrDefault().Text) %>
                 </div>
             </div>
             <% } %>
         </div>
-               <%-- <div class="back" style="float: right;margin-right:-9px;">
+        <%-- <div class="back" style="float: right;margin-right:-9px;">
             <a href="<%= Url.Action("OSO_LogBook", "LogBook") %>">Back to Logbook Overview</a>
         </div>--%>
     </div>
 
 </asp:Content>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="FeaturedContent" runat="server">
+<asp:Content ID="Content5" ContentPlaceHolderID="LeftSideMenu" runat="server">
+    <ul>
+        <li><a href="<%=Url.Action("Index","Customer") %>">Customer</a></li>
+        <li><a href="<%=Url.Action("Index","Driver") %>">Driver</a></li>
+        <li><a href="<%=Url.Action("Index","Vehicle") %>">Vehicle</a></li>
+    </ul>
+</asp:Content>
 
+<asp:Content ID="Content3" ContentPlaceHolderID="FeaturedContent" runat="server">
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="ScriptsSection" runat="server">
