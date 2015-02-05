@@ -12,19 +12,12 @@
         </div>
         <div id="enter-log-book" class="typography">
             <form action="#" method="post" class="form log-book-form">
-                <% if (Request.QueryString.AllKeys.Length > 0)
-                   {
-                       if (Request.QueryString.GetValues("Edit")[0] == "AssignCar" || Request.QueryString.GetValues("Edit")[0] == "AssignDriver")
-                       {%>
-
                 <%=Html.Hidden("SEQ_ID",Model.SEQ_ID)%>
                 <%=Html.Hidden("ADDITIONAL_COMMENTS",Model.ADDITIONAL_COMMENTS)%>
                 <%=Html.Hidden("CODE",Model.CODE)%>
                 <%=Html.Hidden("CREATED_BY",Model.CREATED_BY)%>
                 <%=Html.Hidden("CREATED_ON",Model.CREATED_ON)%>
-                <%=Html.Hidden("CUSTOMER_SEQ_ID",Model.CUSTOMER_SEQ_ID)%>
-                <%=Html.Hidden("CUSTOMER_TYPE_SEQ_ID",Model.CUSTOMER_TYPE_SEQ_ID)%>
-                <%=Html.Hidden("DATE",Model.DATE)%>
+                <%=Html.Hidden("CAR_SEQ_ID",Model.CAR_SEQ_ID)%>
                 <%=Html.Hidden("DISTANCE",Model.DISTANCE)%>
                 <%=Html.Hidden("DRIVING_DIRECTIONS",Model.DRIVING_DIRECTIONS)%>
                 <%=Html.Hidden("DROPOFF_POST_CODE",Model.DROPOFF_POST_CODE)%>
@@ -36,10 +29,7 @@
                 <%=Html.Hidden("DROPOFF_HOUSE_NO",Model.DROPOFF_HOUSE_NO)%>
                 <%=Html.Hidden("DROPOFF_LOCATION",Model.DROPOFF_LOCATION)%>
                 <%=Html.Hidden("FARE",Model.FARE)%>
-                <%=Html.Hidden("FIRST_NAME",Model.FIRST_NAME)%>
-                <%=Html.Hidden("LAST_NAME",Model.LAST_NAME)%>
                 <%=Html.Hidden("LUGGAGE",Model.LUGGAGE)%>
-                <%=Html.Hidden("MOBILE_NO",Model.MOBILE_NO)%>
                 <%=Html.Hidden("MODIFIED_BY",Model.MODIFIED_BY)%>
                 <%=Html.Hidden("MODIFIED_ON",Model.MODIFIED_ON)%>
                 <%=Html.Hidden("NO_OF_BOOSTERS",Model.NO_OF_BOOSTERS)%>
@@ -47,7 +37,6 @@
                 <%=Html.Hidden("NO_OF_INFANTS",Model.NO_OF_INFANTS)%>
                 <%=Html.Hidden("NO_OF_PASSENGERS",Model.NO_OF_PASSENGERS)%>
                 <%=Html.Hidden("OTHER_CHARGES",Model.OTHER_CHARGES)%>
-                <%=Html.Hidden("PAYMENT_MODE_SEQ_ID",Model.PAYMENT_MODE_SEQ_ID)%>
                 <%=Html.Hidden("PAYMENT_TERMS_SEQ_ID",Model.PAYMENT_TERMS_SEQ_ID)%>
                 <%=Html.Hidden("PICKUP_POST_CODE",Model.PICKUP_POST_CODE)%>
                 <%=Html.Hidden("PICKUP_COUNTRY",Model.PICKUP_COUNTY)%>
@@ -59,40 +48,11 @@
                 <%=Html.Hidden("PICKUP_LOCATION",Model.PICKUP_LOCATION)%>
                 <%=Html.Hidden("RETURN_TIME",Model.RETURN_TIME)%>
                 <%=Html.Hidden("STATUS_SEQ_ID",Model.STATUS_SEQ_ID)%>
-                <%=Html.Hidden("TIME",Model.TIME)%>
                 <%=Html.Hidden("TOTAL_AMOUNT",Model.TOTAL_AMOUNT)%>
                 <%=Html.Hidden("VEHICLE_SEQ_ID",Model.VEHICLE_SEQ_ID)%>
                 <%=Html.Hidden("WAIT_AND_RETURN",Model.WAIT_AND_RETURN)%>
-                <%if (Request.QueryString.GetValues("Edit")[0] == "AssignCar")
-                  { %>
-                <h3 class="heading">Assign a car</h3>
-                <div class="rows clr">
-                    <div class="column">
-                        <label>Car:</label>
-                        <%= Html.DropDownList("CAR_SEQ_ID", ViewData["CarList"] as SelectList, "", new { @class="text_field",@style="height:40px;" })%>
-                        <%=Html.Hidden("DRIVER_SEQ_ID",Model.DRIVER_SEQ_ID)%>
-                    </div>
-                </div>
-                <% }
-                  else if (Request.QueryString.GetValues("Edit")[0] == "AssignDriver")
-                  {%>
-                <h3 class="heading">Assign a driver</h3>
-                <div class="rows clr">
-                    <div class="column">
-                        <label>Driver:</label>
-                        <%= Html.DropDownList("DRIVER_SEQ_ID", ViewData["DriverList"] as SelectList, "", new { @class="text_field",@style="height:40px;" })%>
-                        <%=Html.Hidden("CAR_SEQ_ID",Model.CAR_SEQ_ID)%>
-                    </div>
-                </div>
-                <% } %>
+                <%=Html.Hidden("STOP_OVER",Model.STOP_OVER)%>
 
-                <% }
-                   }
-                   else
-                   { %>
-
-                <%=Html.Hidden("CREATED_BY",Model.CREATED_BY)%>
-                <%=Html.Hidden("CREATED_ON",Model.CREATED_ON)%>
                 <h3 class="heading">Search a customer</h3>
                 <div class="rows clr">
                     <div class="column">
@@ -129,8 +89,6 @@
                         <% = Html.TextBox("MOBILE_NO", Model.MOBILE_NO, new { @class = "text_field"})%>
                     </div>
                     <div class="column">
-
-                        <%--<%Html.CheckBox("PAYMENT_MODE_SEQ_ID", "" %>--%>
                         <label>Payment Mode:<span>*</span></label>
                         <%= Html.DropDownList("PAYMENT_MODE_SEQ_ID", ViewData["PaymentModeList"] as SelectList, "", new { @class="text_field",@style="height:40px;", @required="required" })%>
                     </div>
@@ -150,8 +108,6 @@
                         <%= Html.DropDownList("CUSTOMER_TYPE_SEQ_ID", ViewData["CustomerTypeList"] as SelectList, "", new { @class="text_field",@style="height:40px;" })%>
                     </div>
                 </div>
-                <% } %>
-
 
 
                 <hr style="width: 910px; margin-left: 0px;" />

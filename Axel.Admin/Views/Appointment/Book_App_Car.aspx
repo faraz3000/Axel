@@ -30,6 +30,7 @@
                 <%=Html.Hidden("DROPOFF_STREET_NO",Model.DROPOFF_STREET_NO)%>
                 <%=Html.Hidden("DROPOFF_HOUSE_NO",Model.DROPOFF_HOUSE_NO)%>
                 <%=Html.Hidden("DROPOFF_LOCATION",Model.DROPOFF_LOCATION)%>
+                 <%=Html.Hidden("STOP_OVER",Model.STOP_OVER)%>
                 <%=Html.Hidden("FARE",Model.FARE)%>
                 <%=Html.Hidden("FIRST_NAME",Model.FIRST_NAME)%>
                 <%=Html.Hidden("LAST_NAME",Model.LAST_NAME)%>

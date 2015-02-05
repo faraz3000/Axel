@@ -91,7 +91,7 @@
 
                 <hr style="width: 910px; margin-left: 0px;" />
                 <div class="back" style="float: right; padding-right: 38px;">
-                    <a href="<%= Url.Action("Book_App_Car", "Appointment") %>" onclick="return GoBack();">Back to Previous Page</a>
+                    <a href="<%= Url.Action("Book_App_Car", "Appointment", new { ID= Model.SEQ_ID })%>" onclick="return GoBack();">Back to Previous Page</a>
 
                     <input type="submit" class="button small_margin cgreen" value="Save and Add Further Details" name="savenew" />
                     <input type="submit" class="button small_margin cgreen" value="Save and Finish" name="submit" />

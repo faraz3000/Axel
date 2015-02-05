@@ -277,6 +277,7 @@
     <Content Include="Images\animation.gif" />
     <Content Include="Images\car_bg.png" />
     <Content Include="Images\circle.png" />
+    <Content Include="Images\edit_inline.gif" />
     <Content Include="Images\header_bg.png" />
     <Content Include="Images\Help.png" />
     <Content Include="Images\login_dots.png" />
@@ -331,6 +332,7 @@
     <Content Include="Views\Admin\Setup.aspx" />
     <Content Include="Views\Appointment\Book_App_Car.aspx" />
     <Content Include="Views\Appointment\Book_App_Customer.aspx" />
+    <Content Include="Views\Appointment\Book_App_Details.aspx" />
     <Content Include="Views\Appointment\Book_App_Driver.aspx" />
     <Content Include="Views\Appointment\Book_App_Fare.aspx" />
     <Content Include="Views\Appointment\Book_App_Location.aspx" />

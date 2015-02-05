@@ -42,6 +42,7 @@
                 <%=Html.Hidden("TOTAL_AMOUNT",Model.TOTAL_AMOUNT)%>
                 <%=Html.Hidden("VEHICLE_SEQ_ID",Model.VEHICLE_SEQ_ID)%>
                 <%=Html.Hidden("WAIT_AND_RETURN",Model.WAIT_AND_RETURN)%>
+                <%=Html.Hidden("STOP_OVER",Model.STOP_OVER)%>
 
                 <h3 class="heading">Location Details</h3>
                 <div class="rows clr">

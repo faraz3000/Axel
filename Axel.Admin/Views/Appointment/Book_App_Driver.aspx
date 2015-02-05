@@ -20,6 +20,7 @@
                 <%=Html.Hidden("CUSTOMER_SEQ_ID",Model.CUSTOMER_SEQ_ID)%>
                 <%=Html.Hidden("CUSTOMER_TYPE_SEQ_ID",Model.CUSTOMER_TYPE_SEQ_ID)%>
                 <%=Html.Hidden("DATE",Model.DATE)%>
+                 <%=Html.Hidden("TIME",Model.TIME)%>
                 <%=Html.Hidden("DISTANCE",Model.DISTANCE)%>
                 <%=Html.Hidden("DRIVING_DIRECTIONS",Model.DRIVING_DIRECTIONS)%>
                 <%=Html.Hidden("DROPOFF_POST_CODE",Model.DROPOFF_POST_CODE)%>
@@ -54,11 +55,11 @@
                 <%=Html.Hidden("PICKUP_LOCATION",Model.PICKUP_LOCATION)%>
                 <%=Html.Hidden("RETURN_TIME",Model.RETURN_TIME)%>
                 <%=Html.Hidden("STATUS_SEQ_ID",Model.STATUS_SEQ_ID)%>
-                <%=Html.Hidden("TIME",Model.TIME)%>
                 <%=Html.Hidden("TOTAL_AMOUNT",Model.TOTAL_AMOUNT)%>
                 <%=Html.Hidden("WAIT_AND_RETURN",Model.WAIT_AND_RETURN)%>
                 <%=Html.Hidden("VEHICLE_SEQ_ID",Model.VEHICLE_SEQ_ID) %>
                 <%=Html.Hidden("CAR_SEQ_ID",Model.CAR_SEQ_ID) %>
+                <%=Html.Hidden("STOP_OVER",Model.STOP_OVER)%>
                 <h3 class="heading">Assign a driver</h3>
                 <div class="rows clr">
                     <div class="column">

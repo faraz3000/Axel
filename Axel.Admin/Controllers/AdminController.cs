@@ -21,7 +21,14 @@ namespace Axel.Admin.Controllers
 
             if (Filter == null)
             {
-                ModelList = new Brill.Helper().SelectModelListFromDatabase(Model);
+
+                ModelList.AddRange(new Brill.Helper().SelectModelListFromDatabase(Model));
+
+                Model.LUGGAGE = true;
+                Model.WAIT_AND_RETURN = true;
+
+                ModelList.AddRange(new Brill.Helper().SelectModelListFromDatabase(Model));
+
                 ModelList = ModelList.OrderByDescending(s => s.DATE).ToList();
                 Helper();
                 return View(ModelList);

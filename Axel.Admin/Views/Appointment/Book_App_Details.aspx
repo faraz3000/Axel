@@ -15,11 +15,10 @@
                 <%=Html.Hidden("SEQ_ID",Model.SEQ_ID)%>
                 <%=Html.Hidden("ADDITIONAL_COMMENTS",Model.ADDITIONAL_COMMENTS)%>
                 <%=Html.Hidden("CODE",Model.CODE)%>
-                <%=Html.Hidden("CREATED_BY",Model.CREATED_BY)%>
-                <%=Html.Hidden("CREATED_ON",Model.CREATED_ON)%>
                 <%=Html.Hidden("CUSTOMER_SEQ_ID",Model.CUSTOMER_SEQ_ID)%>
                 <%=Html.Hidden("CUSTOMER_TYPE_SEQ_ID",Model.CUSTOMER_TYPE_SEQ_ID)%>
                 <%=Html.Hidden("DATE",Model.DATE)%>
+                <%=Html.Hidden("TIME",Model.TIME)%>
                 <%=Html.Hidden("DISTANCE",Model.DISTANCE)%>
                 <%=Html.Hidden("DRIVING_DIRECTIONS",Model.DRIVING_DIRECTIONS)%>
                 <%=Html.Hidden("DROPOFF_POST_CODE",Model.DROPOFF_POST_CODE)%>
@@ -52,7 +51,9 @@
                 <%=Html.Hidden("VEHICLE_SEQ_ID",Model.VEHICLE_SEQ_ID)%>
                 <%=Html.Hidden("DRIVER_SEQ_ID",Model.DRIVER_SEQ_ID)%>
                 <%=Html.Hidden("CREATED_BY",Model.CREATED_BY)%>
-                <%=Html.Hidden("CREATED_ON",Model.CREATED_ON)%>                                
+                <%=Html.Hidden("CREATED_ON",Model.CREATED_ON)%>     
+                <%=Html.Hidden("CAR_SEQ_ID",Model.CAR_SEQ_ID)%>            
+                <%=Html.Hidden("STOP_OVER",Model.STOP_OVER)%>               
                 <h3 class="heading">Appointment Details</h3>
                 <div class="rows clr">       
                     <div class="column" style="text-align: right;">
