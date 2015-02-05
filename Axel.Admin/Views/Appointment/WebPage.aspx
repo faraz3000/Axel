@@ -137,7 +137,7 @@
                     </div>
                     <div class="column">
 
-                        <%Html.CheckBox("PAYMENT_MODE_SEQ_ID", "" %>
+                        <%--<%Html.CheckBox("PAYMENT_MODE_SEQ_ID", "" %>--%>
                         <label>Payment Mode:<span>*</span></label>
                         <%= Html.DropDownList("PAYMENT_MODE_SEQ_ID", ViewData["PaymentModeList"] as SelectList, "", new { @class="text_field",@style="height:40px;", @required="required" })%>
                     </div>
