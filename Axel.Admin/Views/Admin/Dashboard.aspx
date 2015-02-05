@@ -18,13 +18,13 @@
                if (Request.QueryString.GetValues("Filter")[0] != "TodaysAppointments")
                {%>
         <div style="float: right; margin-bottom: 10px; margin-top: -27px;">
-            <a style="font-size:14px" href="<%=Request.Url.AbsoluteUri.ToString()%>&D=1">Today</a>  | <a style="font-size:14px" href="<%=Request.Url.AbsoluteUri.ToString()%>">All</a>
+            <a style="font-size: 14px" href="<%=Request.Url.AbsoluteUri.ToString()%>&D=1">Today</a>  | <a style="font-size: 14px" href="<%=Request.Url.AbsoluteUri.ToString()%>">All</a>
         </div>
         <% }
                else
                {%>
         <div style="float: right; margin-bottom: 10px; margin-top: -27px;">
-            <a style="font-size:14px" href="<%=Request.Url.AbsoluteUri.ToString()%>&D=1">Today</a>  | <a style="font-size:14px" href="<%=Request.FilePath.ToString()%>">All</a>
+            <a style="font-size: 14px" href="<%=Request.Url.AbsoluteUri.ToString()%>&D=1">Today</a>  | <a style="font-size: 14px" href="<%=Request.FilePath.ToString()%>">All</a>
         </div>
         <%}
            } %>
@@ -72,7 +72,7 @@
                     <% if (Request.QueryString.AllKeys.Length == 0 || Request.QueryString.GetValues("Filter")[0] == "TodaysAppointments")
                        {%>
                     <td>
-                        <a href="<%= Url.Action("WebPage", "Appointment", new { ID = m.SEQ_ID })%>">
+                        <a href="<%= Url.Action("Book_App_Customer", "Appointment", new { ID = m.SEQ_ID })%>">
                             <img alt="Edit" style="margin: 0px 10px -4px 10px;" src="../../Images/edit_inline.gif" /></a>
                         <%--                        | <a href="<%= Url.Action("Delete", "Appointment", new { ID = m.SEQ_ID })%>">
                             <img alt="Delete" style="margin: 0px 10px -4px 10px;" src="../../Images/delete_inline.gif" /></a>--%>
@@ -80,7 +80,16 @@
                     </td>
                     <% } %>
 
-                    <td><%= Html.Encode(string.Format("{0:yyyy/MM/dd}", m.DATE) + " " + string.Format("{0:hh:mm}", m.TIME))%></td>
+                    <td><%= Html.Encode(string.Format("{0:yyyy/MM/dd}", m.DATE) + " ")%>
+                        <% if (m.TIME > 0)
+                           { %>
+                        <%= Html.Encode(((SelectList)ViewData["TimeSlots"]).Where(i => i.Value == Convert.ToString(m.TIME)).SingleOrDefault().Text)%>
+                        <% }
+                           else
+                           { %>
+                        <%=Html.Encode(" ")%>
+                        <% } %>
+                    </td>
                     <td><%= Html.Encode(string.IsNullOrEmpty(m.FIRST_NAME) ? "-" : m.FIRST_NAME + " " + m.LAST_NAME)%></td>
                     <td><%= Html.Encode(string.IsNullOrEmpty(m.MOBILE_NO) ? "-" : m.MOBILE_NO)%></td>
                     <td><% if (m.CAR_SEQ_ID > 0)
@@ -89,7 +98,7 @@
                         <% }
                            else
                            { %>
-                        <a style="color: red;" href="<%= Url.Action("WebPage", "Appointment", new { ID = m.SEQ_ID, Edit="AssignCar" })%>">Assign</a>
+                        <a style="color: red;" href="<%= Url.Action("Book_App_Car", "Appointment", new { ID = m.SEQ_ID })%>">Assign</a>
                         <% } %></td>
                     <td><% if (m.DRIVER_SEQ_ID > 0)
                            { %>
@@ -97,10 +106,8 @@
                         <% }
                            else
                            { %>
-                        <a style="color: red;" href="<%= Url.Action("WebPage", "Appointment", new { ID = m.SEQ_ID, Edit="AssignDriver" })%>">Assign</a>
+                        <a style="color: red;" href="<%= Url.Action("Book_App_Driver", "Appointment", new { ID = m.SEQ_ID })%>">Assign</a>
                         <% } %>
-                        
-                        
                     </td>
                     <td><%= Html.Encode(string.IsNullOrEmpty(m.PICKUP_LOCATION) ? "-" : m.PICKUP_LOCATION)%></td>
                     <td><%= Html.Encode(string.IsNullOrEmpty(m.DROPOFF_LOCATION) ? "-" : m.DROPOFF_LOCATION)%></td>
@@ -123,7 +130,7 @@
                         <% }
                            else
                            { %>
-                        <%=Html.Encode("-")%>
+                        <%=Html.Encode("JOB COMPLETED")%>
                         <% } %>
                     </td>
                 </tr>

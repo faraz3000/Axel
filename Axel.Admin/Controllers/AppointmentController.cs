@@ -92,9 +92,9 @@ namespace Axel.Admin.Controllers
             }
         }
 
-        #region Customer
+        #region App_Customer
         [SessionExpireFilterAttribute]
-        public ActionResult Customer(string ID = null)
+        public ActionResult Book_App_Customer(string ID = null)
         {
             AppointmentModel Model = new AppointmentModel();
 
@@ -109,7 +109,7 @@ namespace Axel.Admin.Controllers
 
         [HttpPost]
         [SessionExpireFilterAttribute]
-        public ActionResult Customer(AppointmentModel Model)
+        public ActionResult Book_App_Customer(AppointmentModel Model)
         {
             Boolean New = (Request.Form).AllKeys[(Request.Form).AllKeys.GetUpperBound(0)].Trim() == "savenew" ? true : false;
 
@@ -140,7 +140,57 @@ namespace Axel.Admin.Controllers
                     Model.CUSTOMER_SEQ_ID = new Brill.Helper().InsertModelInDatabase(subModel);
                 }
 
+                if (Model.SEQ_ID > 0)
+                {
+                    Model.MODIFIED_BY = Convert.ToInt32(Session["USERID"]);
+                    Model.MODIFIED_ON = DateTime.Now;
+                    new Brill.Helper().UpdateModelInDatabase(Model);
+                }
+                else
+                {
+                    Model.CREATED_BY = Convert.ToInt32(Session["USERID"]);
+                    Model.CREATED_ON = DateTime.Now;
+                    Model.SEQ_ID = new Brill.Helper().InsertModelInDatabase(Model);
+                }
 
+                if (New)
+                { return RedirectToAction("Book_App_Location", "Appointment", new { ID = Model.SEQ_ID }); }
+                else
+                { return RedirectToAction("Dashboard", "Admin"); }
+
+            }
+            catch (Exception ex)
+            {
+                Helper();
+                ViewBag.Message = ex.InnerException;
+                return View(Model);
+            }
+        }
+        #endregion
+
+        #region App_Location
+        [SessionExpireFilterAttribute]
+        public ActionResult Book_App_Location(string ID)
+        {
+            AppointmentModel Model = new AppointmentModel();
+
+            if (!string.IsNullOrEmpty(ID))
+            {
+                Model.SEQ_ID = Convert.ToInt32(ID);
+                Model = new Brill.Helper().SelectModelFromDatabase(Model);
+            }
+            Helper();
+            return View(Model);
+        }
+
+        [HttpPost]
+        [SessionExpireFilterAttribute]
+        public ActionResult Book_App_Location(AppointmentModel Model)
+        {
+            Boolean New = (Request.Form).AllKeys[(Request.Form).AllKeys.GetUpperBound(0)].Trim() == "savenew" ? true : false;
+
+            try
+            {
                 if (Model.SEQ_ID > 0)
                 {
                     Model.MODIFIED_BY = Convert.ToInt32(Session["USERID"]);
@@ -155,9 +205,13 @@ namespace Axel.Admin.Controllers
                 }
 
                 if (New)
-                { return RedirectToAction("WebPage", "Appointment"); }
+                {
+                    return RedirectToAction("Book_App_Car", "Appointment", new { ID = Model.SEQ_ID });
+                }
                 else
-                { return RedirectToAction("Dashboard", "Admin"); }
+                {
+                    return RedirectToAction("Dashboard", "Admin");
+                }
 
             }
             catch (Exception ex)
@@ -169,6 +223,231 @@ namespace Axel.Admin.Controllers
         }
         #endregion
 
+        #region App_Car
+        [SessionExpireFilterAttribute]
+        public ActionResult Book_App_Car(string ID)
+        {
+            AppointmentModel Model = new AppointmentModel();
+
+            if (!string.IsNullOrEmpty(ID))
+            {
+                Model.SEQ_ID = Convert.ToInt32(ID);
+                Model = new Brill.Helper().SelectModelFromDatabase(Model);
+            }
+            Helper();
+            return View(Model);
+        }
+
+        [HttpPost]
+        [SessionExpireFilterAttribute]
+        public ActionResult Book_App_Car(AppointmentModel Model)
+        {
+            Boolean New = (Request.Form).AllKeys[(Request.Form).AllKeys.GetUpperBound(0)].Trim() == "savenew" ? true : false;
+
+            try
+            {
+                if (Model.SEQ_ID > 0)
+                {
+                    Model.MODIFIED_BY = Convert.ToInt32(Session["USERID"]);
+                    Model.MODIFIED_ON = DateTime.Now;
+                    new Brill.Helper().UpdateModelInDatabase(Model);
+                }
+                else
+                {
+                    Model.CREATED_BY = Convert.ToInt32(Session["USERID"]);
+                    Model.CREATED_ON = DateTime.Now;
+                    new Brill.Helper().InsertModelInDatabase(Model);
+                }
+
+                if (New)
+                {
+                    return RedirectToAction("Book_App_Fare", "Appointment", new { ID = Model.SEQ_ID });
+                }
+                else
+                {
+                    return RedirectToAction("Dashboard", "Admin");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Helper();
+                ViewBag.Message = ex.InnerException;
+                return View(Model);
+            }
+        }
+        #endregion
+
+        #region App_Fare
+        [SessionExpireFilterAttribute]
+        public ActionResult Book_App_Fare(string ID)
+        {
+            AppointmentModel Model = new AppointmentModel();
+
+            if (!string.IsNullOrEmpty(ID))
+            {
+                Model.SEQ_ID = Convert.ToInt32(ID);
+                Model = new Brill.Helper().SelectModelFromDatabase(Model);
+
+                VehicleModel VehicleModel = new VehicleModel();
+                VehicleModel.SEQ_ID = Model.CAR_SEQ_ID;
+                VehicleModel = new Brill.Helper().SelectModelFromDatabase(VehicleModel);
+                Model.FARE = CalculateFare(Model.DISTANCE, VehicleModel.BASICFARE, VehicleModel.ADDITIONALKMFARE);
+                Model.OTHER_CHARGES = string.IsNullOrEmpty(Model.OTHER_CHARGES) ? "0.0" : Model.OTHER_CHARGES;
+                Model.TOTAL_AMOUNT = Convert.ToString(Convert.ToDouble(Model.FARE) + Convert.ToDouble(Model.OTHER_CHARGES));
+            }
+            Helper();
+            return View(Model);
+        }
+
+        [HttpPost]
+        [SessionExpireFilterAttribute]
+        public ActionResult Book_App_Fare(AppointmentModel Model)
+        {
+            Boolean New = (Request.Form).AllKeys[(Request.Form).AllKeys.GetUpperBound(0)].Trim() == "savenew" ? true : false;
+
+            try
+            {
+                if (Model.SEQ_ID > 0)
+                {
+                    Model.MODIFIED_BY = Convert.ToInt32(Session["USERID"]);
+                    Model.MODIFIED_ON = DateTime.Now;
+                    new Brill.Helper().UpdateModelInDatabase(Model);
+                }
+                else
+                {
+                    Model.CREATED_BY = Convert.ToInt32(Session["USERID"]);
+                    Model.CREATED_ON = DateTime.Now;
+                    new Brill.Helper().InsertModelInDatabase(Model);
+                }
+
+                if (New)
+                {
+                    return RedirectToAction("Book_App_Details", "Appointment", new { ID = Model.SEQ_ID });
+                }
+                else
+                {
+                    return RedirectToAction("Dashboard", "Admin");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Helper();
+                ViewBag.Message = ex.InnerException;
+                return View(Model);
+            }
+        }
+        #endregion
+
+        #region App_Driver
+        [SessionExpireFilterAttribute]
+        public ActionResult Book_App_Driver(string ID)
+        {
+            AppointmentModel Model = new AppointmentModel();
+
+            if (!string.IsNullOrEmpty(ID))
+            {
+                Model.SEQ_ID = Convert.ToInt32(ID);
+                Model = new Brill.Helper().SelectModelFromDatabase(Model);
+            }
+            Helper();
+            return View(Model);
+        }
+
+        [HttpPost]
+        [SessionExpireFilterAttribute]
+        public ActionResult Book_App_Driver(AppointmentModel Model)
+        {
+            Boolean New = (Request.Form).AllKeys[(Request.Form).AllKeys.GetUpperBound(0)].Trim() == "savenew" ? true : false;
+
+            try
+            {
+                if (Model.SEQ_ID > 0)
+                {
+                    Model.MODIFIED_BY = Convert.ToInt32(Session["USERID"]);
+                    Model.MODIFIED_ON = DateTime.Now;
+                    new Brill.Helper().UpdateModelInDatabase(Model);
+                }
+                else
+                {
+                    Model.CREATED_BY = Convert.ToInt32(Session["USERID"]);
+                    Model.CREATED_ON = DateTime.Now;
+                    new Brill.Helper().InsertModelInDatabase(Model);
+                }
+
+                if (New)
+                {
+                    return RedirectToAction("Dashboard", "Admin");
+                }
+                else
+                {
+                    return RedirectToAction("Dashboard", "Admin");
+                }
+            }
+            catch (Exception ex)
+            {
+                Helper();
+                ViewBag.Message = ex.InnerException;
+                return View(Model);
+            }
+        }
+        #endregion
+
+        #region App_Detail
+        [SessionExpireFilterAttribute]
+        public ActionResult Book_App_Details(string ID)
+        {
+            AppointmentModel Model = new AppointmentModel();
+
+            if (!string.IsNullOrEmpty(ID))
+            {
+                Model.SEQ_ID = Convert.ToInt32(ID);
+                Model = new Brill.Helper().SelectModelFromDatabase(Model);
+            }
+            Helper();
+            return View(Model);
+        }
+
+        [HttpPost]
+        [SessionExpireFilterAttribute]
+        public ActionResult Book_App_Details(AppointmentModel Model)
+        {
+            Boolean New = (Request.Form).AllKeys[(Request.Form).AllKeys.GetUpperBound(0)].Trim() == "savenew" ? true : false;
+
+            try
+            {
+                if (Model.SEQ_ID > 0)
+                {
+                    Model.MODIFIED_BY = Convert.ToInt32(Session["USERID"]);
+                    Model.MODIFIED_ON = DateTime.Now;
+                    new Brill.Helper().UpdateModelInDatabase(Model);
+                }
+                else
+                {
+                    Model.CREATED_BY = Convert.ToInt32(Session["USERID"]);
+                    Model.CREATED_ON = DateTime.Now;
+                    new Brill.Helper().InsertModelInDatabase(Model);
+                }
+
+                if (New)
+                {
+                    return RedirectToAction("Dashboard", "Admin");
+                }
+                else
+                {
+                    return RedirectToAction("Dashboard", "Admin");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Helper();
+                ViewBag.Message = ex.InnerException;
+                return View(Model);
+            }
+        }
+        #endregion
 
         [SessionExpireFilterAttribute]
         public JsonResult CalculateDistance(string origin = null, string destination = null)
@@ -188,27 +467,38 @@ namespace Axel.Admin.Controllers
         }
 
         [SessionExpireFilterAttribute]
-        public JsonResult CalculateFare(string distance = null, string fare = null)
+        public string CalculateFare(string distance = null, string basicfare = null, string additionalfare = null)
         {
-            if (!string.IsNullOrEmpty(distance) && !string.IsNullOrEmpty(fare))
+            double totalfare = 0;
+            if (!string.IsNullOrEmpty(distance) && !string.IsNullOrEmpty(basicfare) && !string.IsNullOrEmpty(additionalfare))
             {
                 string[] dist = distance.Split(' ');
                 if (dist.Length == 2)
                 {
                     distance = dist[dist.GetLowerBound(0)];
 
-                    if (dist[dist.GetUpperBound(0)] == "m") 
+                    if (dist[dist.GetUpperBound(0)] == "m")
                     {
-                        fare = Convert.ToString(Convert.ToDouble(distance) / 1000 * Convert.ToDouble(fare));
+                        totalfare = Convert.ToDouble(basicfare);
                     }
                     else if (dist[dist.GetUpperBound(0)] == "km")
                     {
-                        fare = Convert.ToString(Convert.ToDouble(distance) * Convert.ToDouble(fare));
+                        if (Convert.ToDouble(distance) > 10)
+                        {
+                            totalfare = Convert.ToDouble(basicfare);
+                            double additionaldistance = (Convert.ToDouble(distance) - 10);
+                            double additionaldistancefare = additionaldistance * Convert.ToDouble(additionalfare);
+                            totalfare += additionaldistancefare;
+                        }
+                        else
+                        {
+                            totalfare = Convert.ToDouble(basicfare);
+                        }
                     }
 
                 }
             }
-            return Json(fare, JsonRequestBehavior.AllowGet);
+            return totalfare.ToString();
         }
 
         [SessionExpireFilterAttribute]
@@ -255,6 +545,8 @@ namespace Axel.Admin.Controllers
             return Json(Model, JsonRequestBehavior.AllowGet);
         }
 
+        #region Helpers
+
         void Helper()
         {
             GetCustomerType();
@@ -270,11 +562,11 @@ namespace Axel.Admin.Controllers
         }
         void GetTimeSlots()
         {
-            Dictionary<string, string> List = new Dictionary<string, string>();
+            Dictionary<int, string> List = new Dictionary<int, string>();
             TimeSpan time = new TimeSpan(0, 0, 0);
-            for (int i = 0; i < 96; i++)
+            for (int i = 1; i < 97; i++)
             {
-                List.Add(time.ToString(), time.ToString());
+                List.Add(i, time.ToString());
                 time = time.Add(new TimeSpan(0, 15, 0));
             }
             ViewData["TimeSlots"] = new SelectList(List, "Key", "Value");
@@ -338,5 +630,6 @@ namespace Axel.Admin.Controllers
         {
             ViewData["PaymentTermList"] = new SelectList(HelperModel.GetDropDownValues(HelperModel.PAYMENT_TERM), "SEQ_ID", "ATTR_NAME");
         }
+        #endregion
     }
 }

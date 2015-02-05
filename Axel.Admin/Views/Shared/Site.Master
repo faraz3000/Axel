@@ -30,30 +30,25 @@
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&libraries=places"></script>
 
     <style type="text/css">
-        .ui-datepicker
-        {
+        .ui-datepicker {
             background: #298D66;
             border: 1px solid #298D66;
             color: #298D66;
         }
 
-        .ui-datepicker-calendar
-        {
+        .ui-datepicker-calendar {
             color: white;
         }
 
-        .ui-datepicker table span
-        {
+        .ui-datepicker table span {
             color: white;
         }
 
-        .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default
-        {
+        .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
             background: #CCD17C;
         }
 
-        .ui-widget-header
-        {
+        .ui-widget-header {
             background: #CCD17C;
         }
     </style>
@@ -81,7 +76,7 @@
                 <div id="navi" class="navi">
                     <label for="toggle" class="toggle" data-open="Main Menu" data-close="Close Menu" onclick=""></label>
                     <ul class="menu clr">
-                        <li><a href="<%= Url.Action("WebPage","Appointment") %>">Book an Appointment</a></li>
+                        <li><a href="<%= Url.Action("Book_App_Customer","Appointment") %>">Book an Appointment</a></li>
                         <li><a href="<%= Url.Action("Dashboard","Admin") %>">Dashboard</a></li>
                         <li><a href="<%= Url.Action("Setup","Admin") %>">Setup</a></li>
                         <li><a href="<%= Url.Action("Reports","Admin") %>">Reports</a></li>
@@ -246,6 +241,10 @@
                 $(function () {
                     $("#btnHelp1").mouseleave(function () {
                         $("#Instructions1").hide();
+                    });
+
+                    $("form :input").on("keypress", function (e) {
+                        return e.keyCode != 13;
                     });
                 });
 

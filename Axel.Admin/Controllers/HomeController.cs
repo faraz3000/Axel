@@ -26,8 +26,14 @@ namespace Axel.Admin.Controllers
         {
             try
             {
-                new Brill.Helper().CreateTableInDatabaseByModel(new VehicleModel());
                 //new Brill.Helper().CreateTableInDatabaseByModel(new AppointmentModel());
+                //new Brill.Helper().CreateTableInDatabaseByModel(new CustomerModel());
+                //new Brill.Helper().CreateTableInDatabaseByModel(new DriverModel());
+                //new Brill.Helper().CreateTableInDatabaseByModel(new DropDownModel());
+                //new Brill.Helper().CreateTableInDatabaseByModel(new InvoiceModel());
+                //new Brill.Helper().CreateTableInDatabaseByModel(new LookupModel());
+                //new Brill.Helper().CreateTableInDatabaseByModel(new UserModel());
+                //new Brill.Helper().CreateTableInDatabaseByModel(new VehicleModel());
             }
             catch { }
             

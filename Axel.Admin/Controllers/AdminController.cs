@@ -124,6 +124,7 @@ namespace Axel.Admin.Controllers
             GetCars();
             GetDrivers();
             GetStatus();
+            GetTimeSlots();
         }
 
         void GetDrivers()
@@ -153,6 +154,17 @@ namespace Axel.Admin.Controllers
         void GetStatus()
         {
             ViewData["StatusList"] = new SelectList(HelperModel.GetDropDownValues(HelperModel.STATUS), "SEQ_ID", "ATTR_NAME");
+        }
+        void GetTimeSlots()
+        {
+            Dictionary<int, string> List = new Dictionary<int, string>();
+            TimeSpan time = new TimeSpan(0, 0, 0);
+            for (int i = 1; i < 97; i++)
+            {
+                List.Add(i, time.ToString());
+                time = time.Add(new TimeSpan(0, 15, 0));
+            }
+            ViewData["TimeSlots"] = new SelectList(List, "Key", "Value");
         }
     }
 }

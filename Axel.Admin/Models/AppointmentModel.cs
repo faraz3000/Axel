@@ -24,14 +24,14 @@ namespace Axel.Admin.Models
 
         public int VEHICLE_SEQ_ID { get; set; }
         public DateTime? DATE { get; set; }
-        public DateTime? TIME { get; set; }
-        public int LUGGAGE { get; set; }
+        public int TIME { get; set; }
+        public Boolean LUGGAGE { get; set; }
         public int NO_OF_PASSENGERS { get; set; }
         public int NO_OF_CHILDREN { get; set; }
         public int NO_OF_BOOSTERS { get; set; }
         public int NO_OF_INFANTS { get; set; }
-        public int WAIT_AND_RETURN { get; set; }
-        public DateTime? RETURN_TIME { get; set; }
+        public Boolean WAIT_AND_RETURN { get; set; }
+        public int RETURN_TIME { get; set; }
 
         public string STOP_OVER { get; set; }
 

@@ -63,14 +63,8 @@
                 <%=Html.Hidden("TOTAL_AMOUNT",Model.TOTAL_AMOUNT)%>
                 <%=Html.Hidden("VEHICLE_SEQ_ID",Model.VEHICLE_SEQ_ID)%>
                 <%=Html.Hidden("WAIT_AND_RETURN",Model.WAIT_AND_RETURN)%>
-
-
-
-
-
                 <%if (Request.QueryString.GetValues("Edit")[0] == "AssignCar")
                   { %>
-
 
                 <h3 class="heading">Assign a car</h3>
                 <div class="rows clr">
@@ -239,8 +233,8 @@
                     </div>
                     <div class="column" style="text-align: right;">
                         <label>&nbsp;</label>
-                        <% = Html.CheckBox("LUGGAGE", Model.LUGGAGE == 1? true:false, new { @class = "checkbox"})%>Luggage
-                        <% = Html.CheckBox("WAIT_AND_RETURN", Model.WAIT_AND_RETURN == 1? true:false, new { @class = "checkbox"})%>Wait & Return
+                        <% = Html.CheckBox("LUGGAGE", Model.LUGGAGE , new { @class = "checkbox"})%>Luggage
+                        <% = Html.CheckBox("WAIT_AND_RETURN", Model.WAIT_AND_RETURN , new { @class = "checkbox"})%>Wait & Return
                     </div>
                     <div class="column">
                         <label>Return Time:</label>
